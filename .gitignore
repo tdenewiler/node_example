@@ -1,0 +1,10 @@
+*.swp
+*.swo
+bin
+build
+docs
+msg_gen
+srv_gen
+cfg/*.cfgc
+cfg/cpp
+src/node_example

@@ -1,0 +1,26 @@
+<!-- Starts up everything needed to run the example listener/talker Python nodes. -->
+
+<launch>
+  <!-- The talker node will publish a custom message. -->
+  <node
+    pkg="node_example" type="pytalker.py" name="pytalker">
+    <param name="rate" value="10.0"/>
+    <remap from="example" to="chatter"/>
+  </node>
+
+  <!-- The listener node subscribes to the custom message that talker is publishing. -->
+  <node
+    pkg="node_example" type="pylistener.py" name="pylistener">
+    <remap from="example" to="chatter"/>
+  </node>
+
+  <!-- Start up the dynamic reconfigure GUI. -->
+  <node
+    pkg="dynamic_reconfigure" type="reconfigure_gui" name="reconfigure_gui">
+  </node>
+
+  <!-- Start up rxconsole so we can see the output of listener. -->
+  <node
+    pkg="rxtools" type="rxconsole" name="rxconsole">
+  </node>
+</launch>
