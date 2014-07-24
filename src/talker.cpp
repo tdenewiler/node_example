@@ -55,28 +55,28 @@ int main(int argc, char **argv)
   // Set up a dynamic reconfigure server.
   // Do this before parameter server, else some of the parameter server
   // values can be overwritten.
-  dynamic_reconfigure::Server<node_example::node_example_paramsConfig> dr_srv;
-  dynamic_reconfigure::Server<node_example::node_example_paramsConfig>::CallbackType cb;
+  dynamic_reconfigure::Server<node_example::nodeExampleConfig> dr_srv;
+  dynamic_reconfigure::Server<node_example::nodeExampleConfig>::CallbackType cb;
   cb = boost::bind(&NodeExample::configCallback, node_example, _1, _2);
   dr_srv.setCallback(cb);
 
   // Declare variables that can be modified by launch file or command line.
   int a;
   int b;
-  string message;
+  std::string message;
   int rate;
 
   // Initialize node parameters from launch file or command line.
   // Use a private node handle so that multiple instances of the node can be run simultaneously
   // while using different parameters.
   ros::NodeHandle private_node_handle_("~");
-  private_node_handle_.param("a", a, int(1));
-  private_node_handle_.param("b", b, int(2));
-  private_node_handle_.param("message", message, string("hello"));
-  private_node_handle_.param("rate", rate, int(40));
+  private_node_handle_.param("a", a, 1);
+  private_node_handle_.param("b", b, 2);
+  private_node_handle_.param("message", message, std::string("hello"));
+  private_node_handle_.param("rate", rate, 40);
 
   // Create a publisher and name the topic.
-  ros::Publisher pub_message = n.advertise<node_example::node_example_data>("example", 10);
+  ros::Publisher pub_message = n.advertise<node_example::NodeExampleData>("example", 10);
 
   // Tell ROS how fast to run this node.
   ros::Rate r(rate);

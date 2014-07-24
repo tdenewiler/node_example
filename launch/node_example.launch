@@ -33,7 +33,7 @@
 
   <!-- Start up the dynamic reconfigure GUI. -->
   <node
-    pkg="dynamic_reconfigure" type="reconfigure_gui" name="reconfigure_gui">
+    pkg="rqt_reconfigure" type="rqt_reconfigure" name="rqt_reconfigure">
   </node>
 
   <!-- Start up rxconsole so we can see the output of listener. -->

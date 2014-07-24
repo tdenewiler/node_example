@@ -1,14 +1,24 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(node_example)
 
-find_package(catkin REQUIRED COMPONENTS roscpp dynamic_reconfigure roscpp std_msgs)
+find_package(catkin REQUIRED COMPONENTS dynamic_reconfigure message_generation roscpp std_msgs)
+
+add_message_files(
+  FILES
+  NodeExampleData.msg
+)
+
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+)
 
 generate_dynamic_reconfigure_options(
-  cfg/node_example_params.cfg
+  cfg/nodeExample.cfg
 )
 
 catkin_package(
-  CATKIN_DEPENDS roscpp dynamic_reconfigure roscpp std_msgs
+  CATKIN_DEPENDS dynamic_reconfigure message_runtime roscpp std_msgs
 )
 
 include_directories(include ${catkin_INCLUDE_DIRS})
