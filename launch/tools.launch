@@ -1,0 +1,12 @@
+<!-- Tools to change and view node example output. -->
+<launch>
+  <!-- Start up the dynamic reconfigure GUI. -->
+  <node
+    pkg="rqt_reconfigure" type="rqt_reconfigure" name="rqt_reconfigure">
+  </node>
+
+  <!-- Start up rxconsole so we can see the output of listener. -->
+  <node
+    pkg="rqt_console" type="rqt_console" name="rqt_console">
+  </node>
+</launch>

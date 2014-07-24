@@ -1,5 +1,4 @@
 <!-- Starts up everything needed to run the example listener/talker nodes. -->
-
 <launch>
   <!-- The talker node will publish a custom message. -->
   <node
@@ -17,13 +16,5 @@
     <remap from="example" to="chatter"/>
   </node>
 
-  <!-- Start up the dynamic reconfigure GUI. -->
-  <node
-    pkg="rqt_reconfigure" type="rqt_reconfigure" name="rqt_reconfigure">
-  </node>
-
-  <!-- Start up rxconsole so we can see the output of listener. -->
-  <node
-    pkg="rqt_console" type="rqt_console" name="rqt_console">
-  </node>
+  <include file="$(find node_example)/launch/tools.launch"/>
 </launch>

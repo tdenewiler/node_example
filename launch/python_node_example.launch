@@ -1,5 +1,4 @@
 <!-- Starts up everything needed to run the example listener/talker Python nodes. -->
-
 <launch>
   <!-- The talker node will publish a custom message. -->
   <node
@@ -14,13 +13,5 @@
     <remap from="example" to="chatter"/>
   </node>
 
-  <!-- Start up the dynamic reconfigure GUI. -->
-  <node
-    pkg="dynamic_reconfigure" type="reconfigure_gui" name="reconfigure_gui">
-  </node>
-
-  <!-- Start up rxconsole so we can see the output of listener. -->
-  <node
-    pkg="rxtools" type="rxconsole" name="rxconsole">
-  </node>
+  <include file="$(find node_example)/launch/tools.launch"/>
 </launch>

@@ -37,8 +37,6 @@
 #
 
 # Import required Python code.
-import roslib
-roslib.load_manifest('node_example')
 import rospy
 import sys
 
@@ -46,8 +44,8 @@ import sys
 from dynamic_reconfigure.server import Server as DynamicReconfigureServer
 
 # Import custom message data and dynamic reconfigure variables.
-from node_example.msg import node_example_data
-from node_example.cfg import node_example_paramsConfig as ConfigType
+from node_example.msg import NodeExampleData
+from node_example.cfg import nodeExampleConfig as ConfigType
 
 # Node example class.
 class NodeExample():
@@ -60,9 +58,9 @@ class NodeExample():
         # Create a dynamic reconfigure server.
         self.server = DynamicReconfigureServer(ConfigType, self.reconfigure)
         # Create a publisher for our custom message.
-        pub = rospy.Publisher('example', node_example_data)
+        pub = rospy.Publisher('example', NodeExampleData)
         # Set the message to publish as our custom message.
-        msg = node_example_data()
+        msg = NodeExampleData()
         # Initialize message variables.
         msg.a = 1
         msg.b = 2

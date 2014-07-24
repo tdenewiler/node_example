@@ -37,12 +37,10 @@
 #
 
 # Import required Python code.
-import roslib
-roslib.load_manifest('node_example')
 import rospy
 
 # Import custom message data.
-from node_example.msg import node_example_data
+from node_example.msg import NodeExampleData
 
 # Create a callback function for the subscriber.
 def callback(data):
@@ -53,7 +51,7 @@ def callback(data):
 # This ends up being the main while loop.
 def listener():
     # Create a subscriber with appropriate topic, custom message and name of callback function.
-    rospy.Subscriber('example', node_example_data, callback)
+    rospy.Subscriber('example', NodeExampleData, callback)
     # Wait for messages on topic, go to callback function when new messages arrive.
     rospy.spin()
 
