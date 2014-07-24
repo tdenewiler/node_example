@@ -1,11 +1,17 @@
-cmake_minimum_required (VERSION 2.4.6)
-include ($ENV{ROS_ROOT}/core/rosbuild/rosbuild.cmake)
+cmake_minimum_required(VERSION 2.8.3)
+project(node_example)
 
-# Initialize the ROS build system.
-rosbuild_init ()
+find_package(catkin REQUIRED COMPONENTS roscpp dynamic_reconfigure roscpp std_msgs)
 
-# Set the default path for built executables to the "bin" directory.
-set (EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
+generate_dynamic_reconfigure_options(
+  cfg/node_example_params.cfg
+)
+
+catkin_package(
+  CATKIN_DEPENDS roscpp dynamic_reconfigure roscpp std_msgs
+)
+
+include_directories(include ${catkin_INCLUDE_DIRS})
 
 # Set the name to use for the executable.
 set (BINNAME1 talker)
@@ -17,17 +23,32 @@ set (SRCS1 ${SRCS1} src/talker.cpp)
 set (SRCS2 ${SRCS2} src/node_example_core.cpp)
 set (SRCS2 ${SRCS2} src/listener.cpp)
 
-# Have ROS autogenerate code used in messages.
-rosbuild_genmsg ()
-
-# Set the directories where include files can be found.
-include_directories (include)
-
 # Build the executable that will be used to run this node.
-rosbuild_add_executable (${BINNAME1} ${SRCS1})
-rosbuild_add_executable (${BINNAME2} ${SRCS2})
+add_executable (${BINNAME1} ${SRCS1})
+target_link_libraries(${BINNAME1} ${catkin_LIBRARIES})
+add_dependencies(${BINNAME1} ${PROJECT_NAME}_gencfg)
+add_executable (${BINNAME2} ${SRCS2})
+target_link_libraries(${BINNAME2} ${catkin_LIBRARIES})
+add_dependencies(${BINNAME2} ${PROJECT_NAME}_gencfg)
 
-# Add dynamic reconfigure API.
-rosbuild_find_ros_package (dynamic_reconfigure)
-include (${dynamic_reconfigure_PACKAGE_PATH}/cmake/cfgbuild.cmake)
-gencfg ()
+
+install(DIRECTORY include/${PROJECT_NAME}/
+  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+  FILES_MATCHING PATTERN "*.h"
+)
+
+install(TARGETS ${BINNAME1}
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+)
+
+install(TARGETS ${BINNAME2}
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+)
+
+install(DIRECTORY launch
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+)

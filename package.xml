@@ -1,0 +1,25 @@
+<package>
+  <name>node_example</name>
+  <version>0.0.1</version>
+  <description>
+    Example nodes to show how to set up publishers and subscribers while
+    using the parameter server and dynamic reconfigure and custom messages.
+    Examples for Python and C++.
+  </description>
+  <author>Thomas Denewiler</author>
+  <maintainer email="tdenewiler@gmail.com">Thomas Denewiler</maintainer>
+  <license>BSD</license>
+  <url></url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>dynamic_reconfigure</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>std_msgs</build_depend>
+
+  <run_depend>dynamic_reconfigure</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>rospy</run_depend>
+  <run_depend>std_msgs</run_depend>
+</package>
