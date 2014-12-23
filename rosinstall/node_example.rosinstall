@@ -1,0 +1,4 @@
+- git: 
+    local-name: node_example
+    uri: 'https://github.com/tdenewiler/node_example.git
+    version: hydro-dev
