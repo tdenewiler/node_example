@@ -1,4 +1,4 @@
-<package>
+<package format="2">
   <name>node_example</name>
   <version>0.0.1</version>
   <description>
@@ -9,19 +9,14 @@
   <author>Thomas Denewiler</author>
   <maintainer email="tdenewiler@gmail.com">Thomas Denewiler</maintainer>
   <license>BSD</license>
-  <url></url>
+  <url>https://github.com/tdenewiler/node_example</url>
 
   <buildtool_depend>catkin</buildtool_depend>
-
-  <build_depend>dynamic_reconfigure</build_depend>
   <build_depend>message_generation</build_depend>
-  <build_depend>roscpp</build_depend>
-  <build_depend>rospy</build_depend>
-  <build_depend>std_msgs</build_depend>
+  <exec_depend>message_runtime</exec_depend>
 
-  <run_depend>dynamic_reconfigure</run_depend>
-  <run_depend>message_runtime</run_depend>
-  <run_depend>roscpp</run_depend>
-  <run_depend>rospy</run_depend>
-  <run_depend>std_msgs</run_depend>
+  <depend>dynamic_reconfigure</depend>
+  <depend>roscpp</depend>
+  <depend>rospy</depend>
+  <depend>std_msgs</depend>
 </package>
