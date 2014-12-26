@@ -1,8 +1,3 @@
-/*------------------------------------------------------------------------------
- *  Title:        listener.cpp
- *  Description:  ROS node example listener.
- *----------------------------------------------------------------------------*/
-
 /*
  *
  *      Copyright (c) 2010 <iBotics -- www.sdibotics.org>
@@ -38,16 +33,11 @@
 
 #include "node_example/node_example_core.h"
 
-/*------------------------------------------------------------------------------
- * main()
- * Main function to set up ROS node.
- *----------------------------------------------------------------------------*/
-
 int main(int argc, char **argv)
 {
   // Set up ROS.
   ros::init(argc, argv, "listener");
-  ros::NodeHandle n;
+  ros::NodeHandle nh;
 
   // Declare variables that can be modified by launch file or command line.
   int rate;
@@ -55,21 +45,21 @@ int main(int argc, char **argv)
   // Initialize node parameters from launch file or command line.
   // Use a private node handle so that multiple instances of the node can be run simultaneously
   // while using different parameters.
-  ros::NodeHandle private_node_handle_("~");
-  private_node_handle_.param("rate", rate, int(40));
+  ros::NodeHandle pnh("~");
+  pnh.param("rate", rate, int(40));
 
   // Create a new NodeExample object.
   NodeExample *node_example = new NodeExample();
 
   // Create a subscriber.
   // Name the topic, message queue, callback function with class name, and object containing callback function.
-  ros::Subscriber sub_message = n.subscribe("example", 1000, &NodeExample::messageCallback, node_example);
+  ros::Subscriber sub_message = nh.subscribe("example", 1000, &NodeExample::messageCallback, node_example);
 
   // Tell ROS how fast to run this node.
   ros::Rate r(rate);
 
   // Main loop.
-  while (n.ok())
+  while (nh.ok())
   {
     ros::spinOnce();
     r.sleep();

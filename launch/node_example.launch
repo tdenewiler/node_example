@@ -1,8 +1,7 @@
 <!-- Starts up everything needed to run the example listener/talker nodes. -->
 <launch>
   <!-- The C++ talker node will publish a custom message. -->
-  <node
-    pkg="node_example" type="talker" name="talker">
+  <node pkg="node_example" type="talker" name="talker">
     <param name="a" value="1"/>
     <param name="b" value="2"/>
     <param name="message" value="Hello from C++"/>
@@ -11,22 +10,19 @@
   </node>
 
   <!-- The C++ listener node subscribes to the custom message that either talker is publishing. -->
-  <node
-    pkg="node_example" type="listener" name="listener">
+  <node pkg="node_example" type="listener" name="listener">
     <remap from="example" to="chatter"/>
   </node>
 
   <!-- The Python talker node will publish a custom message. -->
-  <node
-    pkg="node_example" type="pytalker.py" name="pytalker">
+  <node pkg="node_example" type="pytalker.py" name="pytalker">
     <param name="message" value="I am Python"/>
     <param name="rate" value="10"/>
     <remap from="example" to="chatter"/>
   </node>
 
   <!-- The Python listener node subscribes to the custom message that either talker is publishing. -->
-  <node
-    pkg="node_example" type="pylistener.py" name="pylistener">
+  <node pkg="node_example" type="pylistener.py" name="pylistener">
     <remap from="example" to="chatter"/>
   </node>
 

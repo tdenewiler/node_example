@@ -1,8 +1,3 @@
-/*------------------------------------------------------------------------------
- *  Title:        node_example_core.cpp
- *  Description:  Common class functions for example talker and listener nodes.
- *----------------------------------------------------------------------------*/
-
 /*
  *
  *      Copyright (c) 2010 <iBotics -- www.sdibotics.org>
@@ -38,65 +33,40 @@
 
 #include "node_example/node_example_core.h"
 
-/*------------------------------------------------------------------------------
- * NodeExample()
- * Constructor.
- *----------------------------------------------------------------------------*/
-
 NodeExample::NodeExample()
 {
 }
-
-/*------------------------------------------------------------------------------
- * ~NodeExample()
- * Destructor.
- *----------------------------------------------------------------------------*/
 
 NodeExample::~NodeExample()
 {
 }
 
-/*------------------------------------------------------------------------------
- * publishMessage()
- * Publish the message.
- *----------------------------------------------------------------------------*/
-
 void NodeExample::publishMessage(ros::Publisher *pub_message)
 {
   node_example::NodeExampleData msg;
-  msg.message = message;
-  msg.a = a;
-  msg.b = b;
+  msg.message = message_;
+  msg.a = a_;
+  msg.b = b_;
 
   pub_message->publish(msg);
 }
 
-/*------------------------------------------------------------------------------
- * messageCallback()
- * Callback function for subscriber.
- *----------------------------------------------------------------------------*/
-
 void NodeExample::messageCallback(const node_example::NodeExampleData::ConstPtr &msg)
 {
-  message = msg->message;
-  a = msg->a;
-  b = msg->b;
+  message_ = msg->message;
+  a_ = msg->a;
+  b_ = msg->b;
 
   // Note that these are only set to INFO so they will print to a terminal for example purposes.
   // Typically, they should be DEBUG.
-  ROS_INFO("message is %s", message.c_str());
-  ROS_INFO("sum of a + b = %d", a + b);
+  ROS_INFO("message is %s", message_.c_str());
+  ROS_INFO("sum of a + b = %d", a_ + b_);
 }
-
-/*------------------------------------------------------------------------------
- * configCallback()
- * Callback function for dynamic reconfigure server.
- *----------------------------------------------------------------------------*/
 
 void NodeExample::configCallback(node_example::nodeExampleConfig &config, uint32_t level)
 {
   // Set class variables to new values. They should match what is input at the dynamic reconfigure GUI.
-  message = config.message.c_str();
-  a = config.a;
-  b = config.b;
+  message_ = config.message.c_str();
+  a_ = config.a;
+  b_ = config.b;
 }

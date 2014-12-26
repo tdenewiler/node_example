@@ -51,8 +51,6 @@
 // Auto-generated from cfg/ directory.
 #include <node_example/nodeExampleConfig.h>
 
-using std::string;
-
 class NodeExample
 {
 public:
@@ -72,13 +70,13 @@ public:
   void messageCallback(const node_example::NodeExampleData::ConstPtr &msg);
 
   //! The actual message.
-  string message;
+  std::string message_;
 
   //! The first integer to use in addition.
-  int a;
+  int a_;
 
   //! The second integer to use in addition.
-  int b;
+  int b_;
 };
 
 #endif // SR_NODE_EXAMPLE_CORE_H

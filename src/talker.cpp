@@ -1,8 +1,3 @@
-/*------------------------------------------------------------------------------
- *  Title:        talker.cpp
- *  Description:  ROS node example talker.
- *----------------------------------------------------------------------------*/
-
 /*
  *
  *      Copyright (c) 2010 <iBotics -- www.sdibotics.org>
@@ -38,16 +33,11 @@
 
 #include "node_example/node_example_core.h"
 
-/*------------------------------------------------------------------------------
- * main()
- * Main function to set up ROS node.
- *----------------------------------------------------------------------------*/
-
 int main(int argc, char **argv)
 {
   // Set up ROS.
   ros::init(argc, argv, "talker");
-  ros::NodeHandle n;
+  ros::NodeHandle nh;
 
   // Create a new NodeExample object.
   NodeExample *node_example = new NodeExample();
@@ -69,20 +59,20 @@ int main(int argc, char **argv)
   // Initialize node parameters from launch file or command line.
   // Use a private node handle so that multiple instances of the node can be run simultaneously
   // while using different parameters.
-  ros::NodeHandle private_node_handle_("~");
-  private_node_handle_.param("a", a, 1);
-  private_node_handle_.param("b", b, 2);
-  private_node_handle_.param("message", message, std::string("hello"));
-  private_node_handle_.param("rate", rate, 40);
+  ros::NodeHandle pnh("~");
+  pnh.param("a", a, 1);
+  pnh.param("b", b, 2);
+  pnh.param("message", message, std::string("hello"));
+  pnh.param("rate", rate, 40);
 
   // Create a publisher and name the topic.
-  ros::Publisher pub_message = n.advertise<node_example::NodeExampleData>("example", 10);
+  ros::Publisher pub_message = nh.advertise<node_example::NodeExampleData>("example", 10);
 
   // Tell ROS how fast to run this node.
   ros::Rate r(rate);
 
   // Main loop.
-  while (n.ok())
+  while (nh.ok())
   {
     // Publish the message.
     node_example->publishMessage(&pub_message);
