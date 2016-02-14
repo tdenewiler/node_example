@@ -58,7 +58,7 @@ class NodeExample():
         # Create a dynamic reconfigure server.
         self.server = DynamicReconfigureServer(ConfigType, self.reconfigure)
         # Create a publisher for our custom message.
-        pub = rospy.Publisher('example', NodeExampleData)
+        pub = rospy.Publisher('example', NodeExampleData, queue_size=10)
         # Set the message to publish as our custom message.
         msg = NodeExampleData()
         # Initialize message variables.

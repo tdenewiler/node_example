@@ -31,7 +31,7 @@
  *
  */
 
-#include "node_example/node_example_core.h"
+#include "node_example/node_example.h"
 
 int main(int argc, char **argv)
 {

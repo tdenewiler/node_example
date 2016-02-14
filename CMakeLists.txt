@@ -23,23 +23,14 @@ catkin_package(
 
 include_directories(include ${catkin_INCLUDE_DIRS})
 
-# Set the name to use for the executable.
-set (BINNAME1 talker)
-set (BINNAME2 listener)
-
-# Set the source files to use with the executable.
-set (SRCS1 ${SRCS1} src/node_example_core.cpp)
-set (SRCS1 ${SRCS1} src/talker.cpp)
-set (SRCS2 ${SRCS2} src/node_example_core.cpp)
-set (SRCS2 ${SRCS2} src/listener.cpp)
-
-# Build the executable that will be used to run this node.
-add_executable (${BINNAME1} ${SRCS1})
-target_link_libraries(${BINNAME1} ${catkin_LIBRARIES})
-add_dependencies(${BINNAME1} ${PROJECT_NAME}_gencfg)
-add_executable (${BINNAME2} ${SRCS2})
-target_link_libraries(${BINNAME2} ${catkin_LIBRARIES})
-add_dependencies(${BINNAME2} ${PROJECT_NAME}_gencfg)
+add_executable (talker src/talker.cpp src/node_example.cpp)
+target_link_libraries(talker ${catkin_LIBRARIES})
+add_dependencies(talker node_example_gencfg)
+add_dependencies(talker node_example_generate_messages_cpp)
+add_executable (listener src/listener.cpp src/node_example.cpp)
+target_link_libraries(listener ${catkin_LIBRARIES})
+add_dependencies(listener node_example_gencfg)
+add_dependencies(listener node_example_generate_messages_cpp)
 
 
 install(DIRECTORY include/${PROJECT_NAME}/
@@ -47,13 +38,7 @@ install(DIRECTORY include/${PROJECT_NAME}/
   FILES_MATCHING PATTERN "*.h"
 )
 
-install(TARGETS ${BINNAME1}
-  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-)
-
-install(TARGETS ${BINNAME2}
+install(TARGETS talker listener
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
