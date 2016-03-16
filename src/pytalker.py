@@ -22,7 +22,7 @@ class NodeExample(object):
         # Get the private namespace parameters from command line or launch file.
         init_message = rospy.get_param('~message', 'hello')
         rate = float(rospy.get_param('~rate', '1.0'))
-        rospy.loginfo('rate = %d', rate)
+        rospy.loginfo('rate = %f', rate)
         # Create a dynamic reconfigure server.
         self.server = DynamicReconfigureServer(ConfigType, self.reconfigure_cb)
         # Create a publisher for our custom message.

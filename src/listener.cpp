@@ -7,7 +7,7 @@ ExampleListener::ExampleListener(ros::NodeHandle nh)
 {
   // Create a subscriber.
   // Name the topic, message queue, callback function with class name, and object containing callback function.
-  sub_ = nh.subscribe("example", 1000, &ExampleListener::messageCallback, this);
+  sub_ = nh.subscribe("example", 10, &ExampleListener::messageCallback, this);
 }
 
 void ExampleListener::messageCallback(const node_example::NodeExampleData::ConstPtr& msg)

@@ -3,7 +3,8 @@
 namespace node_example
 {
 
-ExampleTalker::ExampleTalker(ros::NodeHandle nh)
+ExampleTalker::ExampleTalker(ros::NodeHandle nh) :
+  a_(1), b_(2), message_("hello")
 {
   // Set up a dynamic reconfigure server.
   // Do this before parameter server, else some of the parameter server values can be overwritten.
@@ -12,18 +13,15 @@ ExampleTalker::ExampleTalker(ros::NodeHandle nh)
   dr_srv_.setCallback(cb);
 
   // Declare variables that can be modified by launch file or command line.
-  int a;
-  int b;
-  std::string message;
   int rate;
 
   // Initialize node parameters from launch file or command line. Use a private node handle so that multiple instances
   // of the node can be run simultaneously while using different parameters.
   ros::NodeHandle pnh("~");
-  pnh.param("a", a, 1);
-  pnh.param("b", b, 2);
-  pnh.param("message", message, std::string("hello"));
-  pnh.param("rate", rate, 40);
+  pnh.param("a", a_, a_);
+  pnh.param("b", b_, b_);
+  pnh.param("message", message_, message_);
+  pnh.param("rate", rate, 1);
 
   // Create a publisher and name the topic.
   pub_ = nh.advertise<node_example::NodeExampleData>("example", 10);
