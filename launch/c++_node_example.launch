@@ -5,7 +5,7 @@
     <param name="a" value="1"/>
     <param name="b" value="2"/>
     <param name="message" value="hello"/>
-    <param name="rate" value="40"/>
+    <param name="rate" value="1"/>
     <remap from="example" to="chatter"/>
   </node>
 

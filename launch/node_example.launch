@@ -5,7 +5,7 @@
     <param name="a" value="1"/>
     <param name="b" value="2"/>
     <param name="message" value="Hello from C++"/>
-    <param name="rate" value="10"/>
+    <param name="rate" value="1"/>
     <remap from="example" to="chatter"/>
   </node>
 
@@ -17,7 +17,7 @@
   <!-- The Python talker node will publish a custom message. -->
   <node pkg="node_example" type="pytalker.py" name="pytalker">
     <param name="message" value="I am Python"/>
-    <param name="rate" value="10"/>
+    <param name="rate" value="1"/>
     <remap from="example" to="chatter"/>
   </node>
 

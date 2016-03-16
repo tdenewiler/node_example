@@ -15,8 +15,8 @@ def callback(data):
     Callback function for the subscriber.
     '''
     # Simply print out values in our custom message.
-    rospy.loginfo(rospy.get_name() + " I heard %s", data.message)
-    rospy.loginfo(rospy.get_name() + " a + b = %d", data.a + data.b)
+    rospy.loginfo(rospy.get_name() + " I heard %s", data.message +
+        " a + b = %d" % (data.a + data.b))
 
 def listener():
     '''
@@ -32,6 +32,6 @@ def listener():
 # Main function.
 if __name__ == '__main__':
     # Initialize the node and name it.
-    rospy.init_node('pylistener', anonymous=True)
+    rospy.init_node('pylistener')
     # Go to the main loop.
     listener()

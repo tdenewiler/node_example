@@ -23,14 +23,12 @@ catkin_package(
 
 include_directories(include ${catkin_INCLUDE_DIRS})
 
-add_executable (talker src/talker.cpp src/node_example.cpp)
+add_executable(talker src/talker.cpp src/nodes/talker_node.cpp)
 target_link_libraries(talker ${catkin_LIBRARIES})
-add_dependencies(talker node_example_gencfg)
-add_dependencies(talker node_example_generate_messages_cpp)
-add_executable (listener src/listener.cpp src/node_example.cpp)
+add_dependencies(talker node_example_gencfg node_example_generate_messages_cpp)
+add_executable(listener src/listener.cpp src/nodes/listener_node.cpp)
 target_link_libraries(listener ${catkin_LIBRARIES})
-add_dependencies(listener node_example_gencfg)
-add_dependencies(listener node_example_generate_messages_cpp)
+add_dependencies(listener node_example_gencfg node_example_generate_messages_cpp)
 
 
 install(DIRECTORY include/${PROJECT_NAME}/

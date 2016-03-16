@@ -1,36 +1,20 @@
-#include "node_example/node_example.h"
+#include "node_example/listener.h"
 
-int main(int argc, char **argv)
+namespace node_example
 {
-  // Set up ROS.
-  ros::init(argc, argv, "listener");
-  ros::NodeHandle nh;
 
-  // Declare variables that can be modified by launch file or command line.
-  int rate;
-
-  // Initialize node parameters from launch file or command line.
-  // Use a private node handle so that multiple instances of the node can be run simultaneously
-  // while using different parameters.
-  ros::NodeHandle pnh("~");
-  pnh.param("rate", rate, int(40));
-
-  // Create a new NodeExample object.
-  NodeExample *node_example = new NodeExample();
-
+ExampleListener::ExampleListener(ros::NodeHandle nh)
+{
   // Create a subscriber.
   // Name the topic, message queue, callback function with class name, and object containing callback function.
-  ros::Subscriber sub_message = nh.subscribe("example", 1000, &NodeExample::messageCallback, node_example);
+  sub_ = nh.subscribe("example", 1000, &ExampleListener::messageCallback, this);
+}
 
-  // Tell ROS how fast to run this node.
-  ros::Rate r(rate);
+void ExampleListener::messageCallback(const node_example::NodeExampleData::ConstPtr& msg)
+{
+  // Note that these are only set to INFO so they will print to a terminal for example purposes.
+  // Typically, they should be DEBUG.
+  ROS_INFO("message is %s, a + b = %d", msg->message.c_str(), msg->a + msg->b);
+}
 
-  // Main loop.
-  while (nh.ok())
-  {
-    ros::spinOnce();
-    r.sleep();
-  }
-
-  return 0;
-} // end main()
+}

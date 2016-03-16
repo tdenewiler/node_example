@@ -2,7 +2,7 @@
 <launch>
   <!-- The talker node will publish a custom message. -->
   <node pkg="node_example" type="pytalker.py" name="pytalker">
-    <param name="rate" value="10.0"/>
+    <param name="rate" value="1"/>
     <remap from="example" to="chatter"/>
   </node>
 

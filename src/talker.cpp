@@ -1,21 +1,15 @@
-#include "node_example/node_example.h"
+#include "node_example/talker.h"
 
-int main(int argc, char **argv)
+namespace node_example
 {
-  // Set up ROS.
-  ros::init(argc, argv, "talker");
-  ros::NodeHandle nh;
 
-  // Create a new NodeExample object.
-  NodeExample *node_example = new NodeExample();
-
+ExampleTalker::ExampleTalker(ros::NodeHandle nh)
+{
   // Set up a dynamic reconfigure server.
-  // Do this before parameter server, else some of the parameter server
-  // values can be overwritten.
-  dynamic_reconfigure::Server<node_example::nodeExampleConfig> dr_srv;
+  // Do this before parameter server, else some of the parameter server values can be overwritten.
   dynamic_reconfigure::Server<node_example::nodeExampleConfig>::CallbackType cb;
-  cb = boost::bind(&NodeExample::configCallback, node_example, _1, _2);
-  dr_srv.setCallback(cb);
+  cb = boost::bind(&ExampleTalker::configCallback, this, _1, _2);
+  dr_srv_.setCallback(cb);
 
   // Declare variables that can be modified by launch file or command line.
   int a;
@@ -23,9 +17,8 @@ int main(int argc, char **argv)
   std::string message;
   int rate;
 
-  // Initialize node parameters from launch file or command line.
-  // Use a private node handle so that multiple instances of the node can be run simultaneously
-  // while using different parameters.
+  // Initialize node parameters from launch file or command line. Use a private node handle so that multiple instances
+  // of the node can be run simultaneously while using different parameters.
   ros::NodeHandle pnh("~");
   pnh.param("a", a, 1);
   pnh.param("b", b, 2);
@@ -33,20 +26,28 @@ int main(int argc, char **argv)
   pnh.param("rate", rate, 40);
 
   // Create a publisher and name the topic.
-  ros::Publisher pub_message = nh.advertise<node_example::NodeExampleData>("example", 10);
+  pub_ = nh.advertise<node_example::NodeExampleData>("example", 10);
 
-  // Tell ROS how fast to run this node.
-  ros::Rate r(rate);
+  // Create timer.
+  timer_ = nh.createTimer(ros::Duration(1 / rate), &ExampleTalker::timerCallback, this);
+}
 
-  // Main loop.
-  while (nh.ok())
-  {
-    // Publish the message.
-    node_example->publishMessage(&pub_message);
+void ExampleTalker::timerCallback(const ros::TimerEvent& event)
+{
+  node_example::NodeExampleData msg;
+  msg.message = message_;
+  msg.a = a_;
+  msg.b = b_;
 
-    ros::spinOnce();
-    r.sleep();
-  }
+  pub_.publish(msg);
+}
 
-  return 0;
-} // end main()
+void ExampleTalker::configCallback(node_example::nodeExampleConfig& config, uint32_t level)
+{
+  // Set class variables to new values. They should match what is input at the dynamic reconfigure GUI.
+  message_ = config.message.c_str();
+  a_ = config.a;
+  b_ = config.b;
+}
+
+}
