@@ -1,0 +1,14 @@
+{
+    "docs": [
+        {
+            "location": "/",
+            "text": "ROS Node Example\n\n\nROS\n allows for creating nodes that communicate with each other. It is very common\nto use C++ and Python to write these nodes.\n\n\nThis package contains example nodes written in C++ and Python that show minimal examples of using\nsome very basic but powerful features of ROS. Those features include:\n\n\n\n\nparameter server\n\n\ndynamic reconfigure\n\n\ntimers\n\n\ncustom messages\n\n\nclasses with callback functions for\n    \npublishers and subscribers",
+            "title": "Home"
+        },
+        {
+            "location": "/#ros-node-example",
+            "text": "ROS  allows for creating nodes that communicate with each other. It is very common\nto use C++ and Python to write these nodes.  This package contains example nodes written in C++ and Python that show minimal examples of using\nsome very basic but powerful features of ROS. Those features include:   parameter server  dynamic reconfigure  timers  custom messages  classes with callback functions for\n     publishers and subscribers",
+            "title": "ROS Node Example"
+        }
+    ]
+}
