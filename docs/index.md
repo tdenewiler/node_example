@@ -1,4 +1,4 @@
-# ROS Node Example
+# Node Example
 
 [ROS](http://ros.org) allows for creating nodes that communicate with each other. It is very common
 to use C++ and Python to write these nodes.
