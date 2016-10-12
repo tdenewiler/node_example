@@ -20,6 +20,16 @@ allowing you to see what messages are being recieved by the listeners and anothe
 you to change the values sent from each talker. Both listener nodes receive messages from both
 talkers, showing that the languages used to write the talkers and listeners can be mixed.
 
-The `master` branch will try to keep up with the latest long-term support release version of ROS.
+The `master` branch will try to keep up with the latest long-term support release version of ROS (currently Kinetic).
 The `hydro-dev` branch was tested on ROS Hydro, Indigo, and Kinetic.
 The `fuerte-dev` branch was tested on ROS Fuerte.
+
+## Usage
+
+Run
+
+    roslaunch node_example node_example.launch
+
+to start all nodes. You should see two windows open: `rqt_reconfigure` and `rqt_console`. They will look like
+
+  ![Reconfigure GUI](images/reconfigure.png) ![Console GUI](images/console.png)

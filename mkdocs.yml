@@ -1,2 +1,3 @@
 site_name: ROS Node Example
 repo_url: https://github.com/tdenewiler/node_example
+theme: flatly
