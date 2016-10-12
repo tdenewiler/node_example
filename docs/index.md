@@ -14,17 +14,20 @@ some very basic but powerful features of ROS. Those features include:
     [publishers and subscribers](http://wiki.ros.org/roscpp/Overview/Publishers%20and%20Subscribers)
   * [remap](http://wiki.ros.org/roslaunch/XML/remap) topic names
 
-There are several launch files included, the main one being `node_example.launch`. This will start
-a talker and listener written in C++ and a talker and listener written in Python. One GUI will open
-allowing you to see what messages are being recieved by the listeners and another GUI will allow
-you to change the values sent from each talker. Both listener nodes receive messages from both
-talkers, showing that the languages used to write the talkers and listeners can be mixed.
+## Description
 
-The `master` branch will try to keep up with the latest long-term support release version of ROS (currently Kinetic).
-The `hydro-dev` branch was tested on ROS Hydro, Indigo, and Kinetic.
-The `fuerte-dev` branch was tested on ROS Fuerte.
+There are several launch files included, the main one being [`node_example.launch`](launch/node_example.launch).
+This will start a talker and listener written in C++ and a talker and listener written in Python.
+One GUI will open allowing you to see what messages are being recieved by the listeners and another GUI will allow
+you to change the values sent from each talker.
+Both listener nodes receive messages from both talkers, showing that the languages used to write the talkers and
+listeners can be mixed.
 
 ## Usage
+
+[Build a workspace](http://wiki.ros.org/catkin/Tutorials/create_a_workspace) containing this repository.
+A [`node_example.rosinstall`](rosinstall/node_example.rosinstall) file has been included for convenience with
+[`wstool`](http://wiki.ros.org/wstool).
 
 Run
 
@@ -32,4 +35,12 @@ Run
 
 to start all nodes. You should see two windows open: `rqt_reconfigure` and `rqt_console`. They will look like
 
-  ![Reconfigure GUI](images/reconfigure.png) ![Console GUI](images/console.png)
+  ![Reconfigure GUI](images/reconfigure.png)
+  
+  ![Console GUI](images/console.png)
+
+## Branches
+
+The `master` branch will try to keep up with the latest long-term support release version of ROS (currently Kinetic).
+The `hydro-dev` branch was tested on ROS Hydro, Indigo, and Kinetic.
+The `fuerte-dev` branch was tested on ROS Fuerte.
