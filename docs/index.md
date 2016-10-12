@@ -16,7 +16,7 @@ some very basic but powerful features of ROS. Those features include:
 
 ## Description
 
-There are several launch files included, the main one being [`node_example.launch`](launch/node_example.launch).
+There are several launch files included, the main one being `node_example.launch`.
 This will start a talker and listener written in C++ and a talker and listener written in Python.
 One GUI will open allowing you to see what messages are being recieved by the listeners and another GUI will allow
 you to change the values sent from each talker.
@@ -26,7 +26,7 @@ listeners can be mixed.
 ## Usage
 
 [Build a workspace](http://wiki.ros.org/catkin/Tutorials/create_a_workspace) containing this repository.
-A [`node_example.rosinstall`](rosinstall/node_example.rosinstall) file has been included for convenience with
+A `node_example.rosinstall` file has been included for convenience with
 [`wstool`](http://wiki.ros.org/wstool).
 
 Run
