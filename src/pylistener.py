@@ -16,7 +16,7 @@ def callback(data):
     '''
     # Simply print out values in our custom message.
     rospy.loginfo(rospy.get_name() + " I heard %s", data.message +
-        ", a + b = %d" % (data.a + data.b))
+                  ", a + b = %d" % (data.a + data.b))
 
 def listener():
     '''

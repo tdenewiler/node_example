@@ -2,9 +2,9 @@
   <name>node_example</name>
   <version>0.0.1</version>
   <description>
-    Example nodes to show how to set up publishers and subscribers while
-    using the parameter server and dynamic reconfigure and custom messages.
-    Examples for Python and C++.
+    Publishers and subscribers that use the parameter server, dynamic
+    reconfigure, timers, and custom messages. Examples for Python and C++ are
+    included.
   </description>
   <author>Thomas Denewiler</author>
   <maintainer email="tdenewiler@gmail.com">Thomas Denewiler</maintainer>

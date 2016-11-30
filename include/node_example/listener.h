@@ -10,21 +10,19 @@
 
 namespace node_example
 {
-
 class ExampleListener
 {
-public:
+ public:
   //! Constructor.
-  ExampleListener(ros::NodeHandle nh);
+  explicit ExampleListener(ros::NodeHandle nh);
 
   //! Callback function for subscriber.
   void messageCallback(const node_example::NodeExampleData::ConstPtr &msg);
 
-private:
+ private:
   //! Subscriber to custom message.
   ros::Subscriber sub_;
 };
-
 }
 
-#endif // NODE_EXAMPLE_LISTENER_H
+#endif  // NODE_EXAMPLE_LISTENER_H

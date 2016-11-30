@@ -15,20 +15,19 @@
 
 namespace node_example
 {
-
 class ExampleTalker
 {
-public:
+ public:
   //! Constructor.
-  ExampleTalker(ros::NodeHandle nh);
+  explicit ExampleTalker(ros::NodeHandle nh);
 
   //! Callback function for dynamic reconfigure server.
-  void configCallback(node_example::nodeExampleConfig& config, uint32_t level);
+  void configCallback(node_example::nodeExampleConfig &config, uint32_t level);
 
   //! Timer callback for publishing message.
-  void timerCallback(const ros::TimerEvent& event);
+  void timerCallback(const ros::TimerEvent &event);
 
-private:
+ private:
   //! The timer variable used to go to callback function at specified rate.
   ros::Timer timer_;
 
@@ -47,7 +46,6 @@ private:
   //! The second integer to use in addition.
   int b_;
 };
-
 }
 
-#endif // NODE_EXAMPLE_TALKER_H
+#endif  // NODE_EXAMPLE_TALKER_H

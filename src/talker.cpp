@@ -2,9 +2,7 @@
 
 namespace node_example
 {
-
-ExampleTalker::ExampleTalker(ros::NodeHandle nh) :
-  a_(1), b_(2), message_("hello")
+ExampleTalker::ExampleTalker(ros::NodeHandle nh) : message_("hello"), a_(1), b_(2)
 {
   // Set up a dynamic reconfigure server.
   // Do this before parameter server, else some of the parameter server values can be overwritten.
@@ -30,7 +28,7 @@ ExampleTalker::ExampleTalker(ros::NodeHandle nh) :
   timer_ = nh.createTimer(ros::Duration(1 / rate), &ExampleTalker::timerCallback, this);
 }
 
-void ExampleTalker::timerCallback(const ros::TimerEvent& event)
+void ExampleTalker::timerCallback(const ros::TimerEvent &event)
 {
   node_example::NodeExampleData msg;
   msg.message = message_;
@@ -40,12 +38,11 @@ void ExampleTalker::timerCallback(const ros::TimerEvent& event)
   pub_.publish(msg);
 }
 
-void ExampleTalker::configCallback(node_example::nodeExampleConfig& config, uint32_t level)
+void ExampleTalker::configCallback(node_example::nodeExampleConfig &config, uint32_t level)
 {
   // Set class variables to new values. They should match what is input at the dynamic reconfigure GUI.
   message_ = config.message.c_str();
   a_ = config.a;
   b_ = config.b;
 }
-
 }
