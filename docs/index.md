@@ -36,8 +36,11 @@ Run
 to start all nodes. You should see two windows open: `rqt_reconfigure` and `rqt_console`. They will look like
 
   ![Reconfigure GUI](images/reconfigure.png)
-  
+
   ![Console GUI](images/console.png)
+
+At this point you can modify the strings or numbers in the reconfigure GUI and you should see those changes show
+up in the console GUI.
 
 ## Branches
 
