@@ -1,4 +1,4 @@
-#include "node_example/talker.h"
+#include <node_example/talker.h>
 
 namespace node_example
 {

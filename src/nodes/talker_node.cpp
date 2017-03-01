@@ -1,4 +1,4 @@
-#include "node_example/talker.h"
+#include <node_example/talker.h>
 
 int main(int argc, char **argv)
 {
