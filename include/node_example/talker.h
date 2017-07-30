@@ -5,6 +5,9 @@
 #include <ros/ros.h>
 #include <ros/time.h>
 
+// Boost includes for mutex.
+#include <boost/thread.hpp>
+
 // Custom message includes. Auto-generated from msg/ directory.
 #include <node_example/NodeExampleData.h>
 
@@ -45,6 +48,9 @@ class ExampleTalker
 
   //! The second integer to use in addition.
   int b_;
+
+  //! Mutex to protect writing data in multiple places.
+  boost::mutex mutex_;
 };
 }
 
