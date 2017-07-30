@@ -31,6 +31,7 @@ class NodeExample(object):
         self.int_a = 1
         self.int_b = 2
         self.message = init_message
+        self.enable = True
 
         # Create a timer to go to a callback. This is more accurate than
         # sleeping for a specified time.
@@ -43,6 +44,9 @@ class NodeExample(object):
         """
         Called at a specified interval. Publishes message.
         """
+        if not self.enable:
+            return
+
         # Set the message to publish as our custom message.
         msg = NodeExampleData()
         # Fill in custom message variables with values updated from dynamic
@@ -62,6 +66,7 @@ class NodeExample(object):
         self.message = config["message"]
         self.int_a = config["a"]
         self.int_b = config["b"]
+        self.enable = config["enable"]
         # Return the new variables.
         return config
 

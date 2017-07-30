@@ -51,6 +51,9 @@ class ExampleTalker
 
   //! Mutex to protect writing data in multiple places.
   boost::mutex mutex_;
+
+  //! Flag to set whether the node should do any work at all.
+  bool enable_;
 };
 }
 

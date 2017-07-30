@@ -26,6 +26,7 @@ include_directories(include ${catkin_INCLUDE_DIRS})
 add_executable(talker src/nodes/talker_node.cpp src/talker.cpp)
 target_link_libraries(talker ${catkin_LIBRARIES})
 add_dependencies(talker node_example_gencfg node_example_generate_messages_cpp)
+
 add_executable(listener src/listener.cpp src/nodes/listener_node.cpp)
 target_link_libraries(listener ${catkin_LIBRARIES})
 add_dependencies(listener node_example_gencfg node_example_generate_messages_cpp)

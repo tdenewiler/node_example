@@ -2,7 +2,7 @@
 
 namespace node_example
 {
-ExampleTalker::ExampleTalker(ros::NodeHandle nh) : message_("hello"), a_(1), b_(2)
+ExampleTalker::ExampleTalker(ros::NodeHandle nh) : message_("hello"), a_(1), b_(2), enable_(true)
 {
   // Set up a dynamic reconfigure server.
   // Do this before parameter server, else some of the parameter server values can be overwritten.
@@ -30,8 +30,13 @@ ExampleTalker::ExampleTalker(ros::NodeHandle nh) : message_("hello"), a_(1), b_(
 
 void ExampleTalker::timerCallback(const ros::TimerEvent &event)
 {
-  node_example::NodeExampleData msg;
   boost::unique_lock<boost::mutex> lock(mutex_);
+  if (!enable_)
+  {
+    return;
+  }
+
+  node_example::NodeExampleData msg;
   msg.message = message_;
   msg.a = a_;
   msg.b = b_;
@@ -47,5 +52,6 @@ void ExampleTalker::configCallback(node_example::nodeExampleConfig &config, uint
   message_ = config.message.c_str();
   a_ = config.a;
   b_ = config.b;
+  enable_ = config.enable;
 }
 }
