@@ -21,8 +21,9 @@ class NodeExample(object):
     def __init__(self):
         # Get the private namespace parameters from command line or launch file.
         init_message = rospy.get_param('~message', 'hello')
-        rate = float(rospy.get_param('~rate', '1.0'))
+        rate = rospy.get_param('~rate', '1.0')
         rospy.loginfo('rate = %f', rate)
+        self.enable = rospy.get_param('~enable', True)
         # Create a dynamic reconfigure server.
         self.server = DynamicReconfigureServer(ConfigType, self.reconfigure_cb)
         # Create a publisher for our custom message.
@@ -31,7 +32,6 @@ class NodeExample(object):
         self.int_a = 1
         self.int_b = 2
         self.message = init_message
-        self.enable = True
 
         # Create a timer to go to a callback. This is more accurate than
         # sleeping for a specified time.

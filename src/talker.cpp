@@ -20,6 +20,7 @@ ExampleTalker::ExampleTalker(ros::NodeHandle nh) : message_("hello"), a_(1), b_(
   pnh.param("b", b_, b_);
   pnh.param("message", message_, message_);
   pnh.param("rate", rate, 1);
+  pnh.param("enable", enable_, enable_);
 
   // Create a publisher and name the topic.
   pub_ = nh.advertise<node_example::NodeExampleData>("example", 10);
