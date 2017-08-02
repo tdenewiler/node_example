@@ -50,7 +50,7 @@ void ExampleTalker::configCallback(node_example::nodeExampleConfig &config, uint
 {
   // Set class variables to new values. They should match what is input at the dynamic reconfigure GUI.
   boost::unique_lock<boost::mutex> lock(mutex_);
-  message_ = config.message.c_str();
+  message_ = config.message;
   a_ = config.a;
   b_ = config.b;
   enable_ = config.enable;
