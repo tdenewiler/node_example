@@ -33,7 +33,9 @@ Run
 
     roslaunch node_example node_example.launch
 
-to start all nodes. You should see two windows open: `rqt_reconfigure` and `rqt_console`. They will look like
+to start all nodes.
+You should see two windows open: `rqt_reconfigure` and `rqt_console`.
+They will look like
 
   ![Reconfigure GUI](images/reconfigure.png)
 
@@ -41,6 +43,10 @@ to start all nodes. You should see two windows open: `rqt_reconfigure` and `rqt_
 
 At this point you can modify the strings or numbers in the reconfigure GUI and you should see those changes show
 up in the console GUI.
+There are `enable` parameters in each of the talker nodes so that the nodes can effectively be paused during runtime.
+This is a nice feature that allows easily turning system components on and off during operation for whatever reason
+(such as wanting to run multiple similar nodes side-by-side for comparison without using too many CPU/RAM resources,
+only running certain nodes when some conditions are met, etc.).
 
 ## Branches
 
