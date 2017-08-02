@@ -1,0 +1,5 @@
+<launch>
+  <node pkg="node_example" type="listener" name="listener" output="screen"/>
+
+  <test pkg="node_example" type="test_node_example_listener" test-name="test_node_example_listener" time-limit="120" required="true"/>
+</launch>

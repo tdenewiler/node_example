@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(node_example)
 
-find_package(catkin REQUIRED COMPONENTS dynamic_reconfigure message_generation roscpp rospy std_msgs)
+find_package(catkin REQUIRED COMPONENTS dynamic_reconfigure message_generation roscpp rosgraph_msgs rospy std_msgs)
 
 add_message_files(
   FILES
@@ -18,7 +18,7 @@ generate_dynamic_reconfigure_options(
 )
 
 catkin_package(
-  CATKIN_DEPENDS dynamic_reconfigure message_runtime roscpp rospy std_msgs
+  CATKIN_DEPENDS dynamic_reconfigure message_runtime roscpp rosgraph_msgs rospy std_msgs
 )
 
 include_directories(include ${catkin_INCLUDE_DIRS})
@@ -30,6 +30,16 @@ add_dependencies(talker node_example_gencfg node_example_generate_messages_cpp)
 add_executable(listener src/listener.cpp src/nodes/listener_node.cpp)
 target_link_libraries(listener ${catkin_LIBRARIES})
 add_dependencies(listener node_example_gencfg node_example_generate_messages_cpp)
+
+if(CATKIN_ENABLE_TESTING)
+  find_package(rostest REQUIRED)
+
+  add_rostest_gtest(test_node_example_talker test/test_node_example_talker.test test/test_node_example_talker.cpp)
+  target_link_libraries(test_node_example_talker ${catkin_LIBRARIES})
+
+  add_rostest_gtest(test_node_example_listener test/test_node_example_listener.test test/test_node_example_listener.cpp)
+  target_link_libraries(test_node_example_listener ${catkin_LIBRARIES})
+endif()
 
 
 install(DIRECTORY include/${PROJECT_NAME}/

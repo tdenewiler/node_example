@@ -1,0 +1,10 @@
+<launch>
+  <node pkg="node_example" type="talker" name="talker" output="screen">
+    <param name="a" value="1"/>
+    <param name="b" value="2"/>
+    <param name="message" value="Hello from C++"/>
+    <param name="rate" value="5"/>
+  </node>
+
+  <test pkg="node_example" type="test_node_example_talker" test-name="test_node_example_talker" time-limit="120" required="true"/>
+</launch>

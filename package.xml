@@ -17,6 +17,9 @@
 
   <depend>dynamic_reconfigure</depend>
   <depend>roscpp</depend>
+  <depend>rosgraph_msgs</depend>
   <depend>rospy</depend>
   <depend>std_msgs</depend>
+
+  <test_depend>rostest</test_depend>
 </package>
