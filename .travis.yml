@@ -1,7 +1,7 @@
 sudo: required
 dist: trusty
 # Force travis to use its minimal image with default Python settings
-language: cpp
+language: generic
 
 compiler:
   - gcc
@@ -14,23 +14,24 @@ env:
   global:
     - CATKIN_WS=~/catkin_ws
     - CATKIN_WS_SRC=${CATKIN_WS}/src
-  matrix:
-    - CI_ROS_DISTRO="indigo"
+    - ROS_DISTRO=indigo
+    - ROS_CI_DESKTOP="`lsb_release -cs`"  # e.g. [precise|trusty|...]
 
 install:
-  - sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu trusty main" > /etc/apt/sources.list.d/ros-latest.list'
-  - wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
+  #- sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu trusty main" > /etc/apt/sources.list.d/ros-latest.list'
+  #- wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
+  - sudo sh -c "echo \"deb http://packages.ros.org/ros/ubuntu $ROS_CI_DESKTOP main\" > /etc/apt/sources.list.d/ros-latest.list"
+  - sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
   - sudo apt-get update -qq
-  - sudo apt-get install -qq -y python-rosdep python-catkin-pkg python-rosdep python-wstool ros-$CI_ROS_DISTRO-catkin
+  - sudo apt-get install -qq -y python-rosdep python-catkin-pkg python-rosdep python-wstool ros-$ROS_DISTRO-catkin
   - sudo rosdep init
   - rosdep update
   # Use rosdep to install all dependencies (including ROS itself)
-  - rosdep install --from-paths ./ -i -y --rosdistro $CI_ROS_DISTRO
+  - rosdep install --from-paths ./ -i -y --rosdistro $ROS_DISTRO
 
 script:
-  - source /opt/ros/$CI_ROS_DISTRO/setup.bash
+  - source /opt/ros/$ROS_DISTRO/setup.bash
   - mkdir -p $CATKIN_WS_SRC
-  - ln -s $TRAVIS_BUILD_DIR $CATKIN_WS_SRC
   - cd $CATKIN_WS
   # Build [and Install] packages, build tests, and run tests
   - catkin_make_isolated --install --cmake-args -DCMAKE_BUILD_TYPE=Release &&
