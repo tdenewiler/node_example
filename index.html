@@ -129,11 +129,17 @@ A <code>node_example.rosinstall</code> file has been included for convenience wi
 <p>Run</p>
 <pre><code>roslaunch node_example node_example.launch
 </code></pre>
-<p>to start all nodes. You should see two windows open: <code>rqt_reconfigure</code> and <code>rqt_console</code>. They will look like</p>
+<p>to start all nodes.
+You should see two windows open: <code>rqt_reconfigure</code> and <code>rqt_console</code>.
+They will look like</p>
 <p><img alt="Reconfigure GUI" src="./images/reconfigure.png" /></p>
 <p><img alt="Console GUI" src="./images/console.png" /></p>
 <p>At this point you can modify the strings or numbers in the reconfigure GUI and you should see those changes show
-up in the console GUI.</p>
+up in the console GUI.
+There are <code>enable</code> parameters in each of the talker nodes so that the nodes can effectively be paused during runtime.
+This is a nice feature that allows easily turning system components on and off during operation for whatever reason
+(such as wanting to run multiple similar nodes side-by-side for comparison without using too many CPU/RAM resources,
+only running certain nodes when some conditions are met, etc.).</p>
 <h2 id="branches">Branches</h2>
 <p>The <code>master</code> branch will try to keep up with the latest long-term support release version of ROS (currently Kinetic).
 The <code>hydro-dev</code> branch was tested on ROS Hydro, Indigo, and Kinetic.
