@@ -2,14 +2,21 @@ sudo: required
 dist: trusty
 # Force travis to use its minimal image with default Python settings
 language: generic
+
 compiler:
   - gcc
+
+notifications:
+  email:
+    on_failure: never
+
 env:
   global:
     - CATKIN_WS=~/catkin_ws
     - CATKIN_WS_SRC=${CATKIN_WS}/src
   matrix:
     - CI_ROS_DISTRO="indigo"
+
 install:
   - sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu trusty main" > /etc/apt/sources.list.d/ros-latest.list'
   - wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
@@ -19,6 +26,7 @@ install:
   - rosdep update
   # Use rosdep to install all dependencies (including ROS itself)
   - rosdep install --from-paths ./ -i -y --rosdistro $CI_ROS_DISTRO
+
 script:
   - source /opt/ros/$CI_ROS_DISTRO/setup.bash
   - mkdir -p $CATKIN_WS_SRC
