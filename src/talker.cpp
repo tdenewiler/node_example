@@ -31,7 +31,6 @@ ExampleTalker::ExampleTalker(ros::NodeHandle nh) : message_("hello"), a_(1), b_(
 
 void ExampleTalker::timerCallback(const ros::TimerEvent &event)
 {
-  boost::unique_lock<boost::mutex> lock(mutex_);
   if (!enable_)
   {
     return;
@@ -41,7 +40,6 @@ void ExampleTalker::timerCallback(const ros::TimerEvent &event)
   msg.message = message_;
   msg.a = a_;
   msg.b = b_;
-  lock.unlock();
 
   pub_.publish(msg);
 }
@@ -49,7 +47,6 @@ void ExampleTalker::timerCallback(const ros::TimerEvent &event)
 void ExampleTalker::configCallback(node_example::nodeExampleConfig &config, uint32_t level)
 {
   // Set class variables to new values. They should match what is input at the dynamic reconfigure GUI.
-  boost::unique_lock<boost::mutex> lock(mutex_);
   message_ = config.message;
   a_ = config.a;
   b_ = config.b;
