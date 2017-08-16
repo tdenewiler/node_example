@@ -64,6 +64,7 @@ env:
     # as this is where apt-get installs python packages.
     - PYTHONPATH=$PYTHONPATH:/usr/lib/python2.7/dist-packages:/usr/local/lib/python2.7/dist-packages
     - TRAVIS_CI_PATH=$(pwd)
+    - ROS_PKG=node_example
 
 notifications:
   email:
@@ -125,5 +126,5 @@ script:
   - catkin_make -DCMAKE_CXX_FLAGS="-Wall -Wno-unused --coverage -fno-inline -fno-inline-small-functions -fno-default-inline" -DCMAKE_C_FLAGS="-Wall -Wno-unused --coverage -fno-inline -fno-inline-small-functions -fno-default-inline" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXE_LINKER_FLAGS="-lgcov"
   - source devel/setup.bash
   - catkin_make run_tests && catkin_test_results
-  - cd src/node_example
+  - cd src/$ROS_PKG
   - codecov --gcov-root ~/catkin_ws/build/
