@@ -63,6 +63,7 @@ env:
     # Set the python path manually to include /usr/-/python2.7/dist-packages
     # as this is where apt-get installs python packages.
     - PYTHONPATH=$PYTHONPATH:/usr/lib/python2.7/dist-packages:/usr/local/lib/python2.7/dist-packages
+    - export TRAVIS_CI_PATH=$(pwd)
 
 notifications:
   email:
@@ -121,3 +122,7 @@ script:
   # Run the tests, ensuring the path is set correctly.
   - source devel/setup.bash
   - catkin_make run_tests && catkin_test_results
+
+after_success:
+  - cd $TRAVIS_CI_PATH
+  - bash <(curl -s https://codecov.io/bash) -X gcov -X coveragepy
