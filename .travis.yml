@@ -127,4 +127,6 @@ script:
   - catkin_make run_tests && catkin_test_results
 
 after_success:
-  - codecov
+  - cd src/node_example
+  - codecov --gcov-root ../../build/
+  - ls
