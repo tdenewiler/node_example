@@ -125,5 +125,4 @@ script:
   - catkin_make run_tests && catkin_test_results
 
 after_success:
-  - cd $TRAVIS_CI_PATH
-  - bash <(curl -s https://codecov.io/bash)
+  - codecov
