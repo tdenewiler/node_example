@@ -128,4 +128,5 @@ script:
   - find . -name \*.gcda
   - find . -name \*.gcno
   - cd src/node_example
+  - ls ../../build/
   - codecov --gcov-root ../../build/
