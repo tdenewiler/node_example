@@ -29,12 +29,11 @@ class NodeExample(object):
         self.pub = rospy.Publisher('example', NodeExampleData, queue_size=10)
         # Initialize message variables.
         self.enable = rospy.get_param('~enable', True)
-        self.int_a = rospy.get_param('a', 1)
-        self.int_b = rospy.get_param('b', 2)
+        self.int_a = rospy.get_param('~a', 1)
+        self.int_b = rospy.get_param('~b', 2)
         self.message = rospy.get_param('~message', 'hello')
 
-        # Create a timer to go to a callback. This is more accurate than
-        # sleeping for a specified time.
+        # Create a timer to go to a callback at a specified interval.
         rospy.Timer(rospy.Duration(1 / rate), self.timer_cb)
 
         # Allow ROS to go to all callbacks.
@@ -47,13 +46,19 @@ class NodeExample(object):
         if not self.enable:
             return
 
-        # Set the message to publish as our custom message.
+        # Set the message type to publish as our custom message.
         msg = NodeExampleData()
+        # Assign message fields to values from the parameter server.
+        msg.message = rospy.get_param('~message', self.message)
+        msg.a = rospy.get_param('~a', self.int_a)
+        msg.b = rospy.get_param('~b', self.int_b)
+
         # Fill in custom message variables with values updated from dynamic
         # reconfigure server.
-        msg.message = self.message
-        msg.a = self.int_a
-        msg.b = self.int_b
+        self.message = msg.message
+        self.int_a = msg.a
+        self.int_b = msg.b
+
         # Publish our custom message.
         self.pub.publish(msg)
 
