@@ -130,5 +130,5 @@ script:
   - find . -name \*.gcno
   - cd src/node_example
   - ls
-  - ls ../../build/
+  - ls ../../
   - codecov --gcov-root ../../build/
