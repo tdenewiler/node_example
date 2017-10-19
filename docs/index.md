@@ -15,7 +15,8 @@ Those features include:
     [publishers and subscribers](http://wiki.ros.org/roscpp/Overview/Publishers%20and%20Subscribers)
   * [remap](http://wiki.ros.org/roslaunch/XML/remap) topic names
 
-More ideas that are explored are deploying documentation using [GitHub Pages](), writing unit tests, and checking build status and code coverage.
+More ideas that are explored are deploying documentation using [GitHub Pages](https://pages.github.com/),
+writing unit tests, and checking build status and code coverage.
 
 ## Description
 
