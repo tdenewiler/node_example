@@ -102,10 +102,11 @@
             <div class="col-md-9" role="main">
 
 <h1 id="node-example">Node Example</h1>
-<p><a href="http://ros.org">ROS</a> allows for creating nodes that communicate with each other. It is very common
-to use C++ and Python to write these nodes.</p>
+<p><a href="http://ros.org">ROS</a> allows for creating nodes that communicate with each other.
+It is very common to use C++ and Python to write these nodes.</p>
 <p>This package contains example nodes written in C++ and Python that show minimal examples of using
-some very basic but powerful features of ROS. Those features include:</p>
+some very basic but powerful features of ROS.
+Those features include:</p>
 <ul>
 <li><a href="http://wiki.ros.org/Parameter%20Server">parameter server</a></li>
 <li><a href="http://wiki.ros.org/dynamic_reconfigure/Tutorials">dynamic reconfigure</a></li>
@@ -115,6 +116,7 @@ some very basic but powerful features of ROS. Those features include:</p>
     <a href="http://wiki.ros.org/roscpp/Overview/Publishers%20and%20Subscribers">publishers and subscribers</a></li>
 <li><a href="http://wiki.ros.org/roslaunch/XML/remap">remap</a> topic names</li>
 </ul>
+<p>More ideas that are explored are deploying documentation using <a href="">GitHub Pages</a>, writing unit tests, and checking build status and code coverage.</p>
 <h2 id="description">Description</h2>
 <p>There are several launch files included, the main one being <code>node_example.launch</code>.
 This will start a talker and listener written in C++ and a talker and listener written in Python.
@@ -124,14 +126,12 @@ Both listener nodes receive messages from both talkers, showing that the languag
 listeners can be mixed.</p>
 <h2 id="usage">Usage</h2>
 <p><a href="http://wiki.ros.org/catkin/Tutorials/create_a_workspace">Build a workspace</a> containing this repository.
-A <code>node_example.rosinstall</code> file has been included for convenience with
-<a href="http://wiki.ros.org/wstool"><code>wstool</code></a>.</p>
-<p>Run</p>
+A <code>node_example.rosinstall</code> file has been included for convenience with <a href="http://wiki.ros.org/wstool"><code>wstool</code></a>.</p>
+<p>To start all the nodes run</p>
 <pre><code>roslaunch node_example node_example.launch
 </code></pre>
-<p>to start all nodes.
-You should see two windows open: <code>rqt_reconfigure</code> and <code>rqt_console</code>.
-They will look like</p>
+<p>You should see two windows open: <code>rqt_reconfigure</code> and <code>rqt_console</code>.
+They will look like the following screenshots.</p>
 <p><img alt="Reconfigure GUI" src="./images/reconfigure.png" /></p>
 <p><img alt="Console GUI" src="./images/console.png" /></p>
 <p>At this point you can modify the strings or numbers in the reconfigure GUI and you should see those changes show
