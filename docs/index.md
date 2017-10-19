@@ -1,10 +1,11 @@
 # Node Example
 
-[ROS](http://ros.org) allows for creating nodes that communicate with each other. It is very common
-to use C++ and Python to write these nodes.
+[ROS](http://ros.org) allows for creating nodes that communicate with each other.
+It is very common to use C++ and Python to write these nodes.
 
 This package contains example nodes written in C++ and Python that show minimal examples of using
-some very basic but powerful features of ROS. Those features include:
+some very basic but powerful features of ROS.
+Those features include:
 
   * [parameter server](http://wiki.ros.org/Parameter%20Server)
   * [dynamic reconfigure](http://wiki.ros.org/dynamic_reconfigure/Tutorials)
@@ -13,6 +14,8 @@ some very basic but powerful features of ROS. Those features include:
   * classes with callback functions for
     [publishers and subscribers](http://wiki.ros.org/roscpp/Overview/Publishers%20and%20Subscribers)
   * [remap](http://wiki.ros.org/roslaunch/XML/remap) topic names
+
+More ideas that are explored are deploying documentation using [GitHub Pages](), writing unit tests, and checking build status and code coverage.
 
 ## Description
 
@@ -26,16 +29,14 @@ listeners can be mixed.
 ## Usage
 
 [Build a workspace](http://wiki.ros.org/catkin/Tutorials/create_a_workspace) containing this repository.
-A `node_example.rosinstall` file has been included for convenience with
-[`wstool`](http://wiki.ros.org/wstool).
+A `node_example.rosinstall` file has been included for convenience with [`wstool`](http://wiki.ros.org/wstool).
 
-Run
+To start all the nodes run
 
     roslaunch node_example node_example.launch
 
-to start all nodes.
 You should see two windows open: `rqt_reconfigure` and `rqt_console`.
-They will look like
+They will look like the following screenshots.
 
   ![Reconfigure GUI](images/reconfigure.png)
 
