@@ -63,5 +63,31 @@ The `master` branch will try to keep up with the latest long-term support releas
 The `hydro-dev` branch was tested on ROS Hydro, Indigo, and Kinetic.
 The `fuerte-dev` branch was tested on ROS Fuerte.
 
+## Testing
+
+During development there are large benefits to employing unit tests to verify that code changes do not break existing functionality.
+This package contains unit tests for each of the C++ nodes.
+The unit tests are run using the `*.test` files in the `test/` directory.
+The `*.test` files start the node to be tested plus the unit test code.
+The unit test code is written such that it publishes and subscribes to the topics that correspond to the interfaces of the node under test.
+Callbacks are used to verify that the expected data is available on the specified topics.
+
+There are several methods of running the unit tests.
+Running the tests with continuous integration services for pull requests is a common method used to ensure pull requests can be safely merged.
+A popular continuous integration provider for open source projects is [Travis CI](https://travis-ci.org).
+The build and test results for this package can be found in the table at the top of this page.
+
+Unit tests are not magic bullets.
+The inputs to the nodes must take on enough values to verify that functions return valid values.
+This will be different for each function and is not fully covered here.
+Another aspect of unit tests is to ensure that all lines of code are exercised by unit tests, also referred to as code coverage.
+
+A popular code coverage provider for open source projects is [codecov](https://codecov.io).
+The code coverage results for this package can be found in the table at the top of this page.
+This tool provides some measure of confidence that the existing unit tests will catch any issues, and that new changes are introduced with unit test code.
+
+The configuration file for Travis is in this repository at [.travis.yml](.travis.yml).
+That file contains build flags to ensure that unit tests run and that code coverage results can be calculated.
+
 ## Deploying GitHub Pages
 Deployed using the command `mkdocs gh-deploy`.
