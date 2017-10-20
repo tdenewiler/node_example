@@ -96,6 +96,8 @@
         
             <li><a href="#branches">Branches</a></li>
         
+            <li><a href="#testing">Testing</a></li>
+        
     
     </ul>
 </div></div>
@@ -144,7 +146,27 @@ only running certain nodes when some conditions are met, etc.).</p>
 <h2 id="branches">Branches</h2>
 <p>The <code>master</code> branch will try to keep up with the latest long-term support release version of ROS (currently Kinetic).
 The <code>hydro-dev</code> branch was tested on ROS Hydro, Indigo, and Kinetic.
-The <code>fuerte-dev</code> branch was tested on ROS Fuerte.</p></div>
+The <code>fuerte-dev</code> branch was tested on ROS Fuerte.</p>
+<h2 id="testing">Testing</h2>
+<p>During development there are large benefits to employing unit tests to verify that code changes do not break existing functionality.
+This package contains unit tests for each of the C++ nodes.
+The unit tests are run using the <code>*.test</code> files in the <code>test/</code> directory.
+The <code>*.test</code> files start the node to be tested plus the unit test code.
+The unit test code is written such that it publishes and subscribes to the topics that correspond to the interfaces of the node under test.
+Callbacks are used to verify that the expected data is available on the specified topics.</p>
+<p>There are several methods of running the unit tests.
+Running the tests with continuous integration services for pull requests is a common method used to ensure pull requests can be safely merged.
+A popular continuous integration provider for open source projects is <a href="https://travis-ci.org">Travis CI</a>.
+The build and test results for this package can be found in the table at the top of this page.</p>
+<p>Unit tests are not magic bullets.
+The inputs to the nodes must take on enough values to verify that functions return valid values.
+This will be different for each function and is not fully covered here.
+Another aspect of unit tests is to ensure that all lines of code are exercised by unit tests, also referred to as code coverage.</p>
+<p>A popular code coverage provider for open source projects is <a href="https://codecov.io">codecov</a>.
+The code coverage results for this package can be found in the table at the top of this page.
+This tool provides some measure of confidence that the existing unit tests will catch any issues, and that new changes are introduced with unit test code.</p>
+<p>The configuration file for Travis is in this repository at <a href="./.travis.yml">.travis.yml</a>.
+That file contains build flags to ensure that unit tests run and that code coverage results can be calculated.</p></div>
         </div>
 
         <footer class="col-md-12">
