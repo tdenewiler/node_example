@@ -11,7 +11,7 @@ ExampleTalker::ExampleTalker(ros::NodeHandle nh) : message_("hello"), a_(1), b_(
   dr_srv_.setCallback(cb);
 
   // Declare variables that can be modified by launch file or command line.
-  int rate;
+  int rate = 1;
 
   // Initialize node parameters from launch file or command line. Use a private node handle so that multiple instances
   // of the node can be run simultaneously while using different parameters.
@@ -19,7 +19,7 @@ ExampleTalker::ExampleTalker(ros::NodeHandle nh) : message_("hello"), a_(1), b_(
   pnh.param("a", a_, a_);
   pnh.param("b", b_, b_);
   pnh.param("message", message_, message_);
-  pnh.param("rate", rate, 1);
+  pnh.param("rate", rate, rate);
   pnh.param("enable", enable_, enable_);
 
   // Create a publisher and name the topic.
