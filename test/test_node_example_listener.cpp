@@ -34,7 +34,7 @@ class Helper
     return got_msg_;
   }
 
-  void sendData(double a, double b, std::string message)
+  void sendData(double a, double b, const std::string &message)
   {
     node_example::NodeExampleData msg;
     msg.a = a;
