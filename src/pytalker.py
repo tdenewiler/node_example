@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""
-Example Python node to publish on a specific topic.
-"""
+"""Example Python node to publish on a specific topic."""
 
 # Import required Python code.
 import rospy
@@ -14,11 +12,12 @@ from dynamic_reconfigure.server import Server as DynamicReconfigureServer
 from node_example.msg import NodeExampleData
 from node_example.cfg import nodeExampleConfig as ConfigType
 
+
 class NodeExample(object):
-    '''
-    Node example class.
-    '''
+    """Node example class."""
+
     def __init__(self):
+        """Read in parameters."""
         # Get the private namespace parameters from the parameter server:
         # set from either command line or launch file.
         rate = rospy.get_param('~rate', 1.0)
@@ -36,13 +35,8 @@ class NodeExample(object):
         # Create a timer to go to a callback at a specified interval.
         rospy.Timer(rospy.Duration(1 / rate), self.timer_cb)
 
-        # Allow ROS to go to all callbacks.
-        rospy.spin()
-
     def timer_cb(self, _event):
-        """
-        Called at a specified interval. Publishes message.
-        """
+        """Call at a specified interval to publish message."""
         if not self.enable:
             return
 
@@ -63,9 +57,7 @@ class NodeExample(object):
         self.pub.publish(msg)
 
     def reconfigure_cb(self, config, dummy):
-        '''
-        Create a callback function for the dynamic reconfigure server.
-        '''
+        """Create a callback function for the dynamic reconfigure server."""
         # Fill in local variables with values received from dynamic reconfigure
         # clients (typically the GUI).
         self.message = config["message"]
@@ -75,12 +67,15 @@ class NodeExample(object):
         # Return the new variables.
         return config
 
+
 # Main function.
 if __name__ == '__main__':
     # Initialize the node and name it.
     rospy.init_node('pytalker')
-    # Go to class functions that do all the heavy lifting. Do error checking.
+    # Go to class functions that do all the heavy lifting.
     try:
         NodeExample()
     except rospy.ROSInterruptException:
         pass
+    # Allow ROS to go to all callbacks.
+    rospy.spin()
