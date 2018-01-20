@@ -21,7 +21,9 @@ class NodeExample(object):
         # Get the private namespace parameters from the parameter server:
         # set from either command line or launch file.
         rate = rospy.get_param('~rate', 1.0)
-        rospy.loginfo('rate = %f', rate)
+        # Initialize enable variable so it can be used in dynamic reconfigure
+        # callback upon startup.
+        self.enable = True
         # Create a dynamic reconfigure server.
         self.server = DynamicReconfigureServer(ConfigType, self.reconfigure_cb)
         # Create a publisher for our custom message.
@@ -32,8 +34,21 @@ class NodeExample(object):
         self.int_b = rospy.get_param('~b', 2)
         self.message = rospy.get_param('~message', 'hello')
 
+        if self.enable:
+            self.start()
+        else:
+            self.stop()
+
         # Create a timer to go to a callback at a specified interval.
         rospy.Timer(rospy.Duration(1 / rate), self.timer_cb)
+
+    def start(self):
+        """Turn on publisher."""
+        self.pub = rospy.Publisher('example', NodeExampleData, queue_size=10)
+
+    def stop(self):
+        """Turn off publisher."""
+        self.pub.unregister()
 
     def timer_cb(self, _event):
         """Call at a specified interval to publish message."""
@@ -63,7 +78,15 @@ class NodeExample(object):
         self.message = config["message"]
         self.int_a = config["a"]
         self.int_b = config["b"]
+
+        # Check to see if node should be started or stopped.
+        if self.enable != config["enable"]:
+            if config["enable"]:
+                self.start()
+            else:
+                self.stop()
         self.enable = config["enable"]
+
         # Return the new variables.
         return config
 

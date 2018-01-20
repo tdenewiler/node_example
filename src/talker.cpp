@@ -2,7 +2,7 @@
 
 namespace node_example
 {
-ExampleTalker::ExampleTalker(ros::NodeHandle nh) : message_("hello"), a_(1), b_(2), enable_(true)
+ExampleTalker::ExampleTalker(ros::NodeHandle nh) : nh_(nh), message_("hello"), a_(1), b_(2), enable_(true)
 {
   // Set up a dynamic reconfigure server.
   // Do this before parameter server, else some of the parameter server values can be overwritten.
@@ -23,10 +23,23 @@ ExampleTalker::ExampleTalker(ros::NodeHandle nh) : message_("hello"), a_(1), b_(
   pnh.param("enable", enable_, enable_);
 
   // Create a publisher and name the topic.
-  pub_ = nh.advertise<node_example::NodeExampleData>("example", 10);
+  if (enable_)
+  {
+    start();
+  }
 
   // Create timer.
-  timer_ = nh.createTimer(ros::Duration(1 / rate), &ExampleTalker::timerCallback, this);
+  timer_ = nh_.createTimer(ros::Duration(1 / rate), &ExampleTalker::timerCallback, this);
+}
+
+void ExampleTalker::start()
+{
+  pub_ = nh_.advertise<node_example::NodeExampleData>("example", 10);
+}
+
+void ExampleTalker::stop()
+{
+  pub_.shutdown();
 }
 
 void ExampleTalker::timerCallback(const ros::TimerEvent &event)
@@ -50,6 +63,19 @@ void ExampleTalker::configCallback(node_example::nodeExampleConfig &config, uint
   message_ = config.message;
   a_ = config.a;
   b_ = config.b;
+
+  // Check if we are changing enabled state.
+  if (enable_ != config.enable)
+  {
+    if (config.enable)
+    {
+      start();
+    }
+    else
+    {
+      stop();
+    }
+  }
   enable_ = config.enable;
 }
 }
