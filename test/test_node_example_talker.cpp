@@ -2,6 +2,9 @@
 #include <ros/ros.h>
 
 #include <node_example/NodeExampleData.h>
+#include <dynamic_reconfigure/BoolParameter.h>
+#include <dynamic_reconfigure/Reconfigure.h>
+#include <dynamic_reconfigure/Config.h>
 
 #include <boost/thread.hpp>
 
@@ -11,15 +14,13 @@ class Helper
   Helper() : got_msg_(false)
   {
     example_sub_ = nh_.subscribe("example", 1, &Helper::exampleCallback, this);
-
-    spinForTime(0.5);
-    join();
   }
 
   void spinForTime(double secs)
   {
     spin_secs_ = secs;
     spin_thread_.reset(new boost::thread(boost::bind(&Helper::spinThread, this)));
+    join();
   }
 
   void join()
@@ -30,6 +31,27 @@ class Helper
   bool gotMsg()
   {
     return got_msg_;
+  }
+
+  void reset()
+  {
+    got_msg_ = false;
+  }
+
+  void setEnable(bool enable)
+  {
+    dynamic_reconfigure::ReconfigureRequest srv_req;
+    dynamic_reconfigure::ReconfigureResponse srv_resp;
+    dynamic_reconfigure::BoolParameter bool_param;
+    dynamic_reconfigure::Config conf;
+
+    bool_param.name = "enable";
+    bool_param.value = enable;
+    conf.bools.push_back(bool_param);
+
+    srv_req.config = conf;
+
+    ros::service::call("/talker/set_parameters", srv_req, srv_resp);
   }
 
  private:
@@ -62,6 +84,27 @@ class Helper
 TEST(NodeExampleTest, getMessage)
 {
   Helper h;
+  h.spinForTime(0.5);
+  EXPECT_TRUE(h.gotMsg());
+}
+
+TEST(NodeExampleTest, stopNode)
+{
+  Helper h;
+  h.setEnable(false);
+  h.reset();
+  h.spinForTime(0.5);
+  EXPECT_FALSE(h.gotMsg());
+}
+
+TEST(NodeExampleTest, restartNode)
+{
+  Helper h;
+  h.setEnable(false);
+  h.spinForTime(0.5);
+  h.setEnable(true);
+  h.reset();
+  h.spinForTime(0.5);
   EXPECT_TRUE(h.gotMsg());
 }
 

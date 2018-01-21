@@ -21,13 +21,22 @@ class ExampleTalker
   //! Constructor.
   explicit ExampleTalker(ros::NodeHandle nh);
 
+ private:
   //! Callback function for dynamic reconfigure server.
   void configCallback(node_example::nodeExampleConfig &config, uint32_t level);
 
   //! Timer callback for publishing message.
   void timerCallback(const ros::TimerEvent &event);
 
- private:
+  //! Turn on publisher.
+  void start();
+
+  //! Turn off publisher.
+  void stop();
+
+  //! ROS node handle.
+  ros::NodeHandle nh_;
+
   //! The timer variable used to go to callback function at specified rate.
   ros::Timer timer_;
 
