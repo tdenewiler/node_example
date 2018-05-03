@@ -58,7 +58,7 @@ class Helper
     }
   }
 
-  void rosoutCallback(const rosgraph_msgs::LogConstPtr &msg)
+  void rosoutCallback(const rosgraph_msgs::LogConstPtr &msg __attribute__((unused)))
   {
     got_msg_ = true;
   }

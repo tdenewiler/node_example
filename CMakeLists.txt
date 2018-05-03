@@ -36,9 +36,11 @@ if(CATKIN_ENABLE_TESTING)
 
   add_rostest_gtest(test_node_example_talker test/test_node_example_talker.test test/test_node_example_talker.cpp)
   target_link_libraries(test_node_example_talker ${catkin_LIBRARIES})
+  add_dependencies(test_node_example_talker node_example_generate_messages_cpp)
 
   add_rostest_gtest(test_node_example_listener test/test_node_example_listener.test test/test_node_example_listener.cpp)
   target_link_libraries(test_node_example_listener ${catkin_LIBRARIES})
+  add_dependencies(test_node_example_listener node_example_generate_messages_cpp)
 endif()
 
 

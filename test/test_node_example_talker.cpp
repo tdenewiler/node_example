@@ -67,7 +67,7 @@ class Helper
     }
   }
 
-  void exampleCallback(const node_example::NodeExampleDataConstPtr &msg)
+  void exampleCallback(const node_example::NodeExampleDataConstPtr &msg __attribute__((unused)))
   {
     got_msg_ = true;
   }

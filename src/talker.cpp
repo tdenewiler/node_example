@@ -42,7 +42,7 @@ void ExampleTalker::stop()
   pub_.shutdown();
 }
 
-void ExampleTalker::timerCallback(const ros::TimerEvent &event)
+void ExampleTalker::timerCallback(const ros::TimerEvent &event __attribute__((unused)))
 {
   if (!enable_)
   {
@@ -57,7 +57,7 @@ void ExampleTalker::timerCallback(const ros::TimerEvent &event)
   pub_.publish(msg);
 }
 
-void ExampleTalker::configCallback(node_example::nodeExampleConfig &config, uint32_t level)
+void ExampleTalker::configCallback(node_example::nodeExampleConfig &config, uint32_t level __attribute__((unused)))
 {
   // Set class variables to new values. They should match what is input at the dynamic reconfigure GUI.
   message_ = config.message;
