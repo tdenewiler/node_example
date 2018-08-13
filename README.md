@@ -4,6 +4,7 @@
 | ------- | ------ |
 | Unit Tests/Build | [![Travis-CI](https://api.travis-ci.org/tdenewiler/node_example.svg?branch=master)](https://travis-ci.org/tdenewiler/node_example/branches) |
 | Code Coverage | [![codecov](https://codecov.io/gh/tdenewiler/node_example/branch/master/graph/badge.svg)](https://codecov.io/gh/tdenewiler/node_example) |
+| Better Code Hub | [![BCH compliance](https://bettercodehub.com/edge/badge/tdenewiler/node_example?branch=master)](https://bettercodehub.com/) |
 
 [ROS](http://ros.org) allows for creating nodes that communicate with each other.
 It is very common to use C++ and Python to write these nodes.
