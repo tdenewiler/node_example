@@ -83,6 +83,10 @@ before_install:
   - sudo rosdep init
   - rosdep update
 
+  # Prepare Statick
+  - sudo apt-get install -y python-yapsy bandit clang-3.9 clang-format-3.9 clang-tidy-3.9 flawfinder libomp-dev libxml2 pylint python-git python-pylint-django python-yapsy uncrustify python-catkin-lint ros-kinetic-roslint
+  - sudo -H pip install statick bandit cmakelint lizard pep257 pep8 pyflakes yamllint
+
 # Create a catkin workspace with the package under integration.
 install:
   - mkdir -p ~/catkin_ws/src
@@ -121,6 +125,9 @@ script:
   - source /opt/ros/$ROS_DISTRO/setup.bash
   - cd ~/catkin_ws
   - catkin_make $( [ -f $CATKIN_OPTIONS ] && cat $CATKIN_OPTIONS )
+  - . devel/setup.bash
+  - mkdir statick_output
+  - statick_ws src statick_output --profile ultimate.yaml
   # Run the tests, ensuring the path is set correctly and gcc code coverage options are instrumented.
   - rm -rf build devel
   - catkin_make -DCMAKE_CXX_FLAGS="-Wall -Wno-unused --coverage -fno-inline -fno-inline-small-functions -fno-default-inline" -DCMAKE_C_FLAGS="-Wall -Wno-unused --coverage -fno-inline -fno-inline-small-functions -fno-default-inline" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXE_LINKER_FLAGS="-lgcov"
