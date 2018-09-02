@@ -84,7 +84,7 @@ before_install:
   - rosdep update
 
   # Prepare Statick
-  - sudo apt-get install -y python-yapsy bandit clang-3.9 clang-format-3.9 clang-tidy-3.9 flawfinder libomp-dev libxml2 pylint python-git python-pylint-django python-yapsy uncrustify python-catkin-lint ros-kinetic-roslint
+  - sudo apt-get install -y python-yapsy clang-3.9 clang-format-3.9 clang-tidy-3.9 flawfinder libxml2 pylint python-git python-yapsy uncrustify python-catkin-lint
   - sudo -H pip install statick bandit cmakelint lizard pep257 pep8 pyflakes yamllint
 
 # Create a catkin workspace with the package under integration.
