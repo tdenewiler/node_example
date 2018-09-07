@@ -35,8 +35,9 @@ levels:
       # Not using uncrustify since it is duplicated and not totally compatible with clang-format.
       # uncrustify:
       #   flags: ""
-      xmllint:
-        flags: ""
+      # Not using xmllint since it does not install nicely on 14.04 (Travis).
+      # xmllint:
+      #   flags: ""
       yamllint:
         flags: "-d '{extends: default,
                      rules: {
