@@ -12,7 +12,7 @@ levels:
       cmakelint:
         flags: "--spaces=2 --filter=-linelength,-whitespace/indent"
       cppcheck:
-        flags: "-j 4 --enable=warning --template='[{file}:{line}]: ({severity} {id}) {message}' -j 4 --suppress=unreadVariable --suppress=unusedPrivateFunction --suppress=unusedStructMember --enable=warning,style --config-exclude=/usr --template='[{file}:{line}]: ({severity} {id}) {message}'"
+        flags: "-j 4 --enable=warning --template='[{file}:{line}]: ({severity} {id}) {message}' -j 4 --suppress=unreadVariable --suppress=unusedPrivateFunction --suppress=unusedStructMember"
       cpplint:
         flags: "--filter=-build/header_guard,-build/include,-build/include_order,-build/c++11,-readability/function,-readability/streams,-readability/todo,-readability/namespace,-readability/multiline_comment,-readability/fn_size,-readability/alt_tokens,-readability/braces,-readability/inheritance,-runtime/indentation_namespace,-runtime/int,-runtime/threadsafe_fn,-runtime/references,-runtime/array,-whitespace,-legal"
       findbugs:
