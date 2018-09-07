@@ -85,7 +85,7 @@ before_install:
 
   # Prepare Statick
   - sudo apt-get install -y python-yapsy clang-3.9 clang-format-3.9 clang-tidy-3.9 flawfinder libxml2 pylint python-git python-yapsy uncrustify python-catkin-lint cppcheck
-  - sudo -H pip install statick bandit cmakelint lizard pep257 pep8 pyflakes yamllint
+  - sudo -H pip install statick
 
 # Create a catkin workspace with the package under integration.
 install:
