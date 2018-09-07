@@ -15,9 +15,10 @@ levels:
         flags: "-j 4 --enable=warning --template='[{file}:{line}]: ({severity} {id}) {message}' -j 4 --suppress=unreadVariable --suppress=unusedPrivateFunction --suppress=unusedStructMember"
       cpplint:
         flags: "--filter=-build/header_guard,-build/include,-build/include_order,-build/c++11,-readability/function,-readability/streams,-readability/todo,-readability/namespace,-readability/multiline_comment,-readability/fn_size,-readability/alt_tokens,-readability/braces,-readability/inheritance,-runtime/indentation_namespace,-runtime/int,-runtime/threadsafe_fn,-runtime/references,-runtime/array,-whitespace,-legal"
-      findbugs:
-        flags: ""
-        include: "findBugs-security.xml"
+      # Not using findbugs since it does not install nicely on 14.04 (Travis).
+      # findbugs:
+      #   flags: ""
+      #   include: "findBugs-security.xml"
       flawfinder:
         flags: ""
       lizard:
