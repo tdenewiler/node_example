@@ -127,7 +127,7 @@ script:
   - catkin_make $( [ -f $CATKIN_OPTIONS ] && cat $CATKIN_OPTIONS )
   - . devel/setup.bash
   - mkdir statick_output
-  - statick_ws src statick_output --user-paths ./statick_config
+  - statick_ws src statick_output --user-paths ./src/node_example/statick_config
   # Run the tests, ensuring the path is set correctly and gcc code coverage options are instrumented.
   - rm -rf build devel
   - catkin_make -DCMAKE_CXX_FLAGS="-Wall -Wno-unused --coverage -fno-inline -fno-inline-small-functions -fno-default-inline" -DCMAKE_C_FLAGS="-Wall -Wno-unused --coverage -fno-inline -fno-inline-small-functions -fno-default-inline" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXE_LINKER_FLAGS="-lgcov"
