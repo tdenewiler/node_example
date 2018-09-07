@@ -1,5 +1,5 @@
 levels:
-  ultimate:
+  local:
     tool:
       bandit:
         flags: ""

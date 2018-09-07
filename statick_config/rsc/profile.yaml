@@ -1,4 +1,4 @@
-default: ultimate
+default: local
 
 packages:
 

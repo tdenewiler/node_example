@@ -85,7 +85,7 @@ before_install:
 
   # Prepare Statick
   - sudo apt-get install -y python-yapsy clang-3.9 clang-format-3.9 clang-tidy-3.9 flawfinder libxml2 pylint python-git python-yapsy uncrustify python-catkin-lint cppcheck
-  - sudo -H pip install statick bandit cmakelint lizard pep257 pep8 pyflakes yamllint
+  - sudo -H pip install statick bandit cmakelint lizard pep257 pep8 pyflakes yamllint xmllint
 
 # Create a catkin workspace with the package under integration.
 install:
@@ -127,7 +127,9 @@ script:
   - catkin_make $( [ -f $CATKIN_OPTIONS ] && cat $CATKIN_OPTIONS )
   - . devel/setup.bash
   - mkdir statick_output
-  - cp src/node_example/statick_config/rsc/.clang_format ~
+    # - cp src/node_example/statick_config/rsc/.clang_format ~
+  - ls
+  - ls ~
   - statick_ws src statick_output --user-paths ./src/node_example/statick_config
   # Run the tests, ensuring the path is set correctly and gcc code coverage options are instrumented.
   - rm -rf build devel
