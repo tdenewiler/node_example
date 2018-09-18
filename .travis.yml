@@ -84,7 +84,7 @@ before_install:
   - rosdep update
 
   # Prepare Statick
-  - sudo apt-get install -y python-yapsy clang-3.9 clang-format-3.9 clang-tidy-3.9 flawfinder libxml2-utils pylint python-git python-yapsy uncrustify python-catkin-lint cppcheck
+  - sudo apt-get install -y python-yapsy clang-3.9 clang-format-3.9 clang-tidy-3.9 flawfinder libxml2-utils pylint python-git python-yapsy uncrustify python-catkin-lint ros-$ROS_DISTRO-roslint cppcheck
   - sudo pip install statick
 
 # Create a catkin workspace with the package under integration.
