@@ -127,9 +127,8 @@ script:
   - catkin_make $( [ -f $CATKIN_OPTIONS ] && cat $CATKIN_OPTIONS )
   - . devel/setup.bash
   - mkdir statick_output
-  - echo $USER
-  - eval echo "~$USER"
-  - cp /usr/local/lib/python2.7/dist-packages/statick_tool/rsc/_clang-format ..
+  - TRAVIS_HOME=eval echo "~$USER"
+  - cp /usr/local/lib/python2.7/dist-packages/statick_tool/rsc/_clang-format $TRAVIS_HOME
   - statick src/node_example statick_output --user-paths ./src/node_example/statick_config
   # Run the tests, ensuring the path is set correctly and gcc code coverage options are instrumented.
   - rm -rf build devel
