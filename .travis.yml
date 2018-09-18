@@ -128,7 +128,7 @@ script:
   - . devel/setup.bash
   - mkdir statick_output
   - echo $PWD
-  - cp ./src/node_example/statick_config/rsc/.clang_format .
+  - cp ./src/node_example/statick_config/rsc/.clang_format ..
   - statick src/node_example statick_output --user-paths ./src/node_example/statick_config
   # Run the tests, ensuring the path is set correctly and gcc code coverage options are instrumented.
   - rm -rf build devel
