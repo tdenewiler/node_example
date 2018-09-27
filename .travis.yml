@@ -128,7 +128,7 @@ script:
   - . devel/setup.bash
 
   - mkdir statick_output
-  - git clone -b local-clang-format https://github.com/tdenewiler/statick
+  - git clone https://github.com/tdenewiler/statick
   - cp statick/statick_tool/rsc/.clang-format ~
   - ./statick/statick src/node_example statick_output --user-paths ./src/node_example/statick_config
 
