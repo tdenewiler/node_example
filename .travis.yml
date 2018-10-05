@@ -128,11 +128,8 @@ script:
   - . devel/setup.bash
 
   - mkdir statick_output
-  - git clone -b ignore-clang-format-not-found https://github.com/tdenewiler/statick
-  - cp statick/statick_tool/rsc/.clang-format .
-  - ls -a ~
-  - clang-format --dump-config
-  - ./statick/statick src/$ROS_PKG statick_output --user-paths ./src/node_example/statick_config --clang-format-ignore-exception
+  - cp /usr/local/lib/python2.7/dist-packages/statick_tool/rsc/_clang-format /home/travis
+  - statick src/$ROS_PKG statick_output --user-paths ./src/$ROS_PKG/statick_config --clang-format-ignore-exception
 
   # Run the tests, ensuring the path is set correctly and gcc code coverage options are instrumented.
   - rm -rf build devel
