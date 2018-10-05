@@ -129,7 +129,7 @@ script:
 
   - mkdir statick_output
   - git clone https://github.com/tdenewiler/statick
-  - cp statick/statick_tool/rsc/_clang-format ~
+  - cp statick/statick_tool/rsc/.clang-format .
   - ls -a ~
   - clang-format --dump-config
   - ./statick/statick src/$ROS_PKG statick_output --user-paths ./src/node_example/statick_config
