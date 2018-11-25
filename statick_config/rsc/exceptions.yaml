@@ -1,0 +1,6 @@
+packages:
+  node_example:
+    exceptions:
+      file:
+        - tools: all
+          globs: ["site/*"]
