@@ -25,9 +25,9 @@ levels:
         flags: ""
       make:
         flags: "-Wcast-align -Wchar-subscripts -Wformat-security -Wformat -Wimplicit-int -Wint-to-pointer-cast -Wparentheses -Winvalid-offsetof -Wsequence-point -Wdelete-non-virtual-dtor -Wreorder -Wreturn-type -Wuninitialized -Wunused-parameter -Wunreachable-code -Wunused-value -Wvarargs -Wtrigraphs -Wcast-qual -Wall -Wextra -Woverloaded-virtual -Wnon-virtual-dtor -Wold-style-cast -Wno-unused-variable -Wno-unused-but-set-variable -Wno-unused-parameter"
-      pep257:
+      pycodestyle:
         flags: ""
-      pep8:
+      pydocstyle:
         flags: ""
       pyflakes:
         flags: ""
