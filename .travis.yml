@@ -85,7 +85,7 @@ before_install:
 
   # Prepare Statick.
   - sudo apt-get install -y clang-3.9 clang-format-3.9 clang-tidy-3.9 cppcheck flawfinder libxml2-utils pylint python-catkin-lint python-git python-yapsy python-yapsy ros-$ROS_DISTRO-roslint uncrustify
-  - sudo pip install statick
+  - sudo pip install --upgrade statick
 
 # Create a catkin workspace with the package under integration.
 install:
