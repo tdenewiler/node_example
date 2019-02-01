@@ -35,8 +35,8 @@ CCCC_MetTmnt@COM@999999.000000@999999.000000@0@6@0@Comment lines@
 CCCC_MetTmnt@COMper@999999.000000@999999.000000@0@6@3@Comment lines (averaged)@
 CCCC_MetTmnt@DIT@3.000000@6.000000@0@6@0@Depth of Inheritance Tree@
 CCCC_MetTmnt@FI@12.000000@20.000000@0@6@0@Fan in (overall)@
-CCCC_MetTmnt@FIc@6.000000@12.000000@0@6@0@Fan in (concrete uses only)@
-CCCC_MetTmnt@FIv@6.000000@12.000000@0@6@0@Fan in (visible uses only)@
+CCCC_MetTmnt@FIc@10.000000@12.000000@0@6@0@Fan in (concrete uses only)@
+CCCC_MetTmnt@FIv@10.000000@12.000000@0@6@0@Fan in (visible uses only)@
 CCCC_MetTmnt@FO@12.000000@20.000000@0@6@0@Fan out (overall)@
 CCCC_MetTmnt@FOc@6.000000@12.000000@0@6@0@Fan out (concrete uses only)@
 CCCC_MetTmnt@FOv@6.000000@12.000000@0@6@0@Fan out (visible uses only)@
