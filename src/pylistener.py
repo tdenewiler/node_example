@@ -12,8 +12,8 @@ from node_example.msg import NodeExampleData
 def callback(data):
     """Handle subscriber data."""
     # Simply print out values in our custom message.
-    rospy.loginfo(rospy.get_name() + " I heard %s", data.message +
-                  ", a + b = %d" % (data.a + data.b))
+    rospy.loginfo("%s: I heard %s, a + b = %d", rospy.get_name(), data.message,
+                  data.a + data.b)
 
 
 def listener():
