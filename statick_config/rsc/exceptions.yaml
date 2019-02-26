@@ -2,14 +2,14 @@ packages:
   node_example:
     exceptions:
       file:
+        - tools: all
+          globs: ["site/*"]
         # System headers
         - tools: all
           globs: ["/opt/ros/*", "/opt/pleora/*", "/usr/*"]
         # ROS auto-generated headers
         - tools: all
           globs: ["*/devel/include/*", "*/devel/*/include/*"]
-        - tools: all
-          globs: ["site/*"]
       message_regex:
         # Python 2/3 compatibility requires inheriting from `object`.
         - tools: [pylint]
