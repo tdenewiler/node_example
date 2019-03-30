@@ -29,7 +29,7 @@ ExampleTalker::ExampleTalker(ros::NodeHandle nh) : nh_(nh), message_("hello"), a
   }
 
   // Create timer.
-  timer_ = nh_.createTimer(ros::Duration(1 / rate), &ExampleTalker::timerCallback, this);
+  timer_ = nh_.createTimer(ros::Duration(1.0 / rate), &ExampleTalker::timerCallback, this);
 }
 
 void ExampleTalker::start()
