@@ -40,7 +40,7 @@ class NodeExample(object):
             self.stop()
 
         # Create a timer to go to a callback at a specified interval.
-        rospy.Timer(rospy.Duration(1 / rate), self.timer_cb)
+        rospy.Timer(rospy.Duration(1.0 / rate), self.timer_cb)
 
     def start(self):
         """Turn on publisher."""

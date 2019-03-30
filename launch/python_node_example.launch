@@ -1,8 +1,11 @@
 <!-- Starts up everything needed to run the example listener/talker Python nodes. -->
 <launch>
+  <!-- Arguments to allow changing common parameters from the command line or when including this file from other launch files. -->
+  <arg name="rate" default="1.0"/>
+
   <!-- The talker node will publish a custom message. -->
   <node pkg="node_example" type="pytalker.py" name="pytalker">
-    <param name="rate" value="1"/>
+    <param name="rate" value="$(arg rate)"/>
     <remap from="example" to="chatter"/>
   </node>
 

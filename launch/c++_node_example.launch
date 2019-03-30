@@ -1,11 +1,17 @@
 <!-- Starts up everything needed to run the example listener/talker nodes. -->
 <launch>
+  <!-- Arguments to allow changing common parameters from the command line or when including this file from other launch files. -->
+  <arg name="a" default="1"/>
+  <arg name="b" default="2"/>
+  <arg name="message" default="hello"/>
+  <arg name="rate" default="1.0"/>
+
   <!-- The talker node will publish a custom message. -->
   <node pkg="node_example" type="talker" name="talker">
-    <param name="a" value="1"/>
-    <param name="b" value="2"/>
-    <param name="message" value="hello"/>
-    <param name="rate" value="1"/>
+    <param name="a" value="$(arg a)"/>
+    <param name="b" value="$(arg b)"/>
+    <param name="message" value="$(arg message)"/>
+    <param name="rate" value="$(arg rate)"/>
     <remap from="example" to="chatter"/>
   </node>
 
