@@ -84,7 +84,7 @@ class Helper
 TEST(NodeExampleTest, getMessage)
 {
   Helper h;
-  h.spinForTime(0.5);
+  h.spinForTime(1.0);
   EXPECT_TRUE(h.gotMsg());
 }
 
@@ -93,7 +93,7 @@ TEST(NodeExampleTest, stopNode)
   Helper h;
   h.setEnable(false);
   h.reset();
-  h.spinForTime(0.5);
+  h.spinForTime(1.0);
   EXPECT_FALSE(h.gotMsg());
 }
 
@@ -104,7 +104,7 @@ TEST(NodeExampleTest, restartNode)
   h.spinForTime(0.5);
   h.setEnable(true);
   h.reset();
-  h.spinForTime(0.5);
+  h.spinForTime(1.0);
   EXPECT_TRUE(h.gotMsg());
 }
 
