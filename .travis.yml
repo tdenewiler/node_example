@@ -127,9 +127,8 @@ script:
   - catkin build $( [ -f $CATKIN_OPTIONS ] && cat $CATKIN_OPTIONS )
   - . devel/setup.bash
 
-  - mkdir statick_output
-  - cp /usr/local/lib/python2.7/dist-packages/statick_tool/rsc/.clang-format /home/travis
-  - statick src/$ROS_PKG statick_output --user-paths ./src/$ROS_PKG/statick_config --clang-format-ignore-exception
+  - cp /usr/local/lib/python2.7/dist-packages/statick_tool/rsc/.clang-format /home/travis/_clang-format
+  - statick src/$ROS_PKG --user-paths ./src/$ROS_PKG/statick_config --clang-format-ignore-exception
 
   # Run the tests, ensuring the path is set correctly and gcc code coverage options are instrumented.
   - rm -rf build devel
