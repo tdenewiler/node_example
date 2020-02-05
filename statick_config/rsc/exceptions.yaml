@@ -1,15 +1,17 @@
+---
 packages:
   node_example:
     exceptions:
       file:
-        - tools: all
-          globs: ["site/*"]
         # System headers
         - tools: all
           globs: ["/opt/ros/*", "/opt/pleora/*", "/usr/*"]
-        # ROS auto-generated headers
+        # ROS auto-generated files
         - tools: all
-          globs: ["*/devel/include/*", "*/devel/*/include/*"]
+          globs: ["*/devel/*", "*/build/*", "*/logs/*", "*/site/*", "*/.catkin_tools/*"]
+        # CCCC auto-generate files
+        - tools: all
+          globs: ["*/.cccc/*"]
       message_regex:
         # Python 2/3 compatibility requires inheriting from `object`.
         - tools: [pylint]
