@@ -9,13 +9,18 @@ packages:
         # ROS auto-generated files
         - tools: all
           globs: ["*/devel/*", "*/build/*", "*/logs/*", "*/site/*", "*/.catkin_tools/*"]
-        # CCCC auto-generate files
+        # Statick auto-generate files
         - tools: all
           globs: ["*/.cccc/*"]
       message_regex:
         # Python 2/3 compatibility requires inheriting from `object`.
         - tools: [pylint]
           regex: ".+: Class .+ inherits from object, can be safely removed from bases in python3"
+        # Lizard finds some ROS auto-generated files
+        - tools: [lizard]
+          regex: "_rollback_env_variable.+"
+        - tools: [lizard]
+          regex: "find_env_hooks.+"
 
 ignore_packages:
   - catkin_tools_prebuild
