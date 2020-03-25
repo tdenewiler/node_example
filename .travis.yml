@@ -73,11 +73,11 @@ notifications:
 
 # Install system dependencies, namely a very barebones ROS setup.
 before_install:
-  - sudo pip install codecov python3-pip
+  - sudo pip install codecov
   - sudo sh -c "echo \"deb http://packages.ros.org/ros/ubuntu $ROS_CI_DESKTOP main\" > /etc/apt/sources.list.d/ros-latest.list"
   - sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
   - sudo apt-get update -qq
-  - sudo apt-get install -y python-catkin-pkg python-catkin-tools python-rosdep python-wstool ros-$ROS_DISTRO-catkin
+  - sudo apt-get install -y python-catkin-pkg python-catkin-tools python-rosdep python-wstool python3-pip ros-$ROS_DISTRO-catkin
   - source /opt/ros/$ROS_DISTRO/setup.bash
   # Prepare rosdep to install dependencies.
   - sudo rosdep init
