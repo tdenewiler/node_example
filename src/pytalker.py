@@ -20,19 +20,19 @@ class NodeExample(object):
         """Read in parameters."""
         # Get the private namespace parameters from the parameter server:
         # set from either command line or launch file.
-        rate = rospy.get_param('~rate', 1.0)
+        rate = rospy.get_param("~rate", 1.0)
         # Initialize enable variable so it can be used in dynamic reconfigure
         # callback upon startup.
         self.enable = True
         # Create a dynamic reconfigure server.
         self.server = DynamicReconfigureServer(ConfigType, self.reconfigure_cb)
         # Create a publisher for our custom message.
-        self.pub = rospy.Publisher('example', NodeExampleData, queue_size=10)
+        self.pub = rospy.Publisher("example", NodeExampleData, queue_size=10)
         # Initialize message variables.
-        self.enable = rospy.get_param('~enable', True)
-        self.int_a = rospy.get_param('~a', 1)
-        self.int_b = rospy.get_param('~b', 2)
-        self.message = rospy.get_param('~message', 'hello')
+        self.enable = rospy.get_param("~enable", True)
+        self.int_a = rospy.get_param("~a", 1)
+        self.int_b = rospy.get_param("~b", 2)
+        self.message = rospy.get_param("~message", "hello")
 
         if self.enable:
             self.start()
@@ -44,7 +44,7 @@ class NodeExample(object):
 
     def start(self):
         """Turn on publisher."""
-        self.pub = rospy.Publisher('example', NodeExampleData, queue_size=10)
+        self.pub = rospy.Publisher("example", NodeExampleData, queue_size=10)
 
     def stop(self):
         """Turn off publisher."""
@@ -58,9 +58,9 @@ class NodeExample(object):
         # Set the message type to publish as our custom message.
         msg = NodeExampleData()
         # Assign message fields to values from the parameter server.
-        msg.message = rospy.get_param('~message', self.message)
-        msg.a = rospy.get_param('~a', self.int_a)
-        msg.b = rospy.get_param('~b', self.int_b)
+        msg.message = rospy.get_param("~message", self.message)
+        msg.a = rospy.get_param("~a", self.int_a)
+        msg.b = rospy.get_param("~b", self.int_b)
 
         # Fill in custom message variables with values updated from dynamic
         # reconfigure server.
@@ -92,9 +92,9 @@ class NodeExample(object):
 
 
 # Main function.
-if __name__ == '__main__':
+if __name__ == "__main__":
     # Initialize the node and name it.
-    rospy.init_node('pytalker')
+    rospy.init_node("pytalker")
     # Go to class functions that do all the heavy lifting.
     try:
         NodeExample()

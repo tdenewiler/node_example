@@ -5,6 +5,8 @@ levels:
     tool:
       bandit:
         flags: ""
+      black:
+        flags: ""
       catkin_lint:
         flags: "-W2 --ignore DESCRIPTION_BOILERPLATE,DESCRIPTION_MEANINGLESS,GLOBAL_VAR_COLLISION,LINK_DIRECTORY,LITERAL_PROJECT_NAME,TARGET_NAME_COLLISION"
       cccc:
@@ -26,8 +28,9 @@ levels:
         flags: ""
       make:
         flags: "-Wcast-align -Wchar-subscripts -Wformat-security -Wformat -Wimplicit-int -Wint-to-pointer-cast -Wparentheses -Winvalid-offsetof -Wsequence-point -Wdelete-non-virtual-dtor -Wreorder -Wreturn-type -Wuninitialized -Wunused-parameter -Wunreachable-code -Wunused-value -Wvarargs -Wtrigraphs -Wcast-qual -Wall -Wextra -Woverloaded-virtual -Wnon-virtual-dtor -Wold-style-cast -Wno-unused-variable -Wno-unused-but-set-variable -Wno-unused-parameter"
+      # Set max line length to match black.
       pycodestyle:
-        flags: ""
+        flags: "--max-line-length=88"
       pydocstyle:
         flags: ""
       pyflakes:
