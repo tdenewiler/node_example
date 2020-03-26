@@ -81,7 +81,7 @@ before_install:
   - rosdep update
 
   # Prepare Statick.
-  - sudo apt-get install -y cccc clang-3.9 clang-format-3.9 clang-tidy-3.9 cppcheck flawfinder libxml2-utils maven pylint python-catkin-lint python-git python-yapsy python-yapsy python3.6 python3-setuptools ros-$ROS_DISTRO-roslint uncrustify
+  - sudo apt-get install -y cccc clang-3.9 clang-format-3.9 clang-tidy-3.9 cppcheck flawfinder libxml2-utils maven pylint python-catkin-lint python-git python-yapsy python-yapsy python3-setuptools ros-$ROS_DISTRO-roslint uncrustify
   - sudo pip3 install --upgrade statick --ignore-installed PyYAML
 
   # Python3.6 and black.
