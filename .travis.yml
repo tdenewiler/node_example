@@ -70,7 +70,7 @@ notifications:
 
 # Install system dependencies, namely a very barebones ROS setup.
 before_install:
-  - sudo pip install codecov
+  - sudo pip install --upgrade codecov
   - sudo sh -c "echo \"deb http://packages.ros.org/ros/ubuntu $ROS_CI_DESKTOP main\" > /etc/apt/sources.list.d/ros-latest.list"
   - sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
   - sudo apt-get update -qq
@@ -83,6 +83,16 @@ before_install:
   # Prepare Statick.
   - sudo apt-get install -y cccc clang-3.9 clang-format-3.9 clang-tidy-3.9 cppcheck flawfinder libxml2-utils maven pylint python-catkin-lint python-git python-yapsy python-yapsy python3-setuptools ros-$ROS_DISTRO-roslint uncrustify
   - sudo pip3 install --upgrade statick --ignore-installed PyYAML
+
+  # Python3.6 and black.
+  - sudo apt-get install -y software-properties-common python-software-properties
+  - sudo add-apt-repository ppa:deadsnakes/ppa -y
+  - sudo apt-get update
+  - sudo apt-get install -y python3.6
+  - sudo apt-get install -y python3-pip
+  - echo "alias python3='/usr/bin/python3.6'" >> ~/.bashrc
+  - . ~/.bashrc
+  - python3.6 -m pip install --upgrade black
 
 # Create a catkin workspace with the package under integration.
 install:
