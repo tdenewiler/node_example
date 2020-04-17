@@ -1,10 +1,8 @@
 # ROS Node Example
 
-| Service | Status |
-| ------- | ------ |
-| Unit Tests/Build | [![Travis-CI](https://api.travis-ci.org/tdenewiler/node_example.svg?branch=master)](https://travis-ci.org/tdenewiler/node_example/branches) |
-| Code Coverage | [![codecov](https://codecov.io/gh/tdenewiler/node_example/branch/master/graph/badge.svg)](https://codecov.io/gh/tdenewiler/node_example) |
-| Better Code Hub | [![BCH compliance](https://bettercodehub.com/edge/badge/tdenewiler/node_example?branch=master)](https://bettercodehub.com/) |
+![Build & Test](https://github.com/tdenewiler/node_example/workflows/Build%20&%20Test/badge.svg)
+[![codecov](https://codecov.io/gh/tdenewiler/node_example/branch/master/graph/badge.svg)](https://codecov.io/gh/tdenewiler/node_example)
+[![BCH compliance](https://bettercodehub.com/edge/badge/tdenewiler/node_example?branch=master)](https://bettercodehub.com/)
 
 [ROS](http://ros.org) allows for creating nodes that communicate with each other.
 It is very common to use C++ and Python to write these nodes.
@@ -13,13 +11,13 @@ This package contains example nodes written in C++ and Python that show minimal 
 some very basic but powerful features of ROS.
 Those features include:
 
-  * [parameter server](http://wiki.ros.org/Parameter%20Server)
-  * [dynamic reconfigure](http://wiki.ros.org/dynamic_reconfigure/Tutorials)
-  * [timers](http://wiki.ros.org/roscpp/Overview/Timers)
-  * [custom messages](http://wiki.ros.org/ROS/Tutorials/DefiningCustomMessages)
-  * classes with callback functions for
-    [publishers and subscribers](http://wiki.ros.org/roscpp/Overview/Publishers%20and%20Subscribers)
-  * [remap](http://wiki.ros.org/roslaunch/XML/remap) topic names
+* [parameter server](http://wiki.ros.org/Parameter%20Server)
+* [dynamic reconfigure](http://wiki.ros.org/dynamic_reconfigure/Tutorials)
+* [timers](http://wiki.ros.org/roscpp/Overview/Timers)
+* [custom messages](http://wiki.ros.org/ROS/Tutorials/DefiningCustomMessages)
+* classes with callback functions for
+  [publishers and subscribers](http://wiki.ros.org/roscpp/Overview/Publishers%20and%20Subscribers)
+* [remap](http://wiki.ros.org/roslaunch/XML/remap) topic names
 
 More ideas that are explored are deploying documentation using [GitHub Pages](https://pages.github.com/),
 writing unit tests, and checking build status and code coverage.
@@ -52,8 +50,10 @@ They will look like the following screenshots.
 
   ![Console GUI](docs/images/console.png)
 
-At this point you can modify the strings or numbers in the reconfigure GUI and you should see those changes show up in the console GUI.
-There are `enable` parameters in each of the talker nodes so that the nodes can effectively be paused and resumed during runtime.
+At this point you can modify the strings or numbers in the reconfigure GUI and you should see those changes show up
+in the console GUI.
+There are `enable` parameters in each of the talker nodes so that the nodes can effectively be paused and resumed
+during runtime.
 This is a nice feature that allows easily turning system components on and off during operation for whatever reason
 (such as wanting to run multiple similar nodes side-by-side for comparison without using too many CPU/RAM resources,
 only running certain nodes when some conditions are met, etc.).
@@ -66,29 +66,35 @@ The `fuerte-dev` branch was tested on ROS Fuerte.
 
 ## Testing
 
-During development there are large benefits to employing unit tests to verify that code changes do not break existing functionality.
+During development there are large benefits to employing unit tests to verify that code changes do not break existing
+functionality.
 This package contains unit tests for each of the C++ nodes.
 The unit tests are run using the `*.test` files in the `test/` directory.
 The `*.test` files start the node to be tested plus the unit test code.
-The unit test code is written such that it publishes and subscribes to the topics that correspond to the interfaces of the node under test.
+The unit test code is written such that it publishes and subscribes to the topics that correspond to the interfaces
+of the node under test.
 Callbacks are used to verify that the expected data is available on the specified topics.
 
 There are several methods of running the unit tests.
-Running the tests with continuous integration services for pull requests is a common method used to ensure pull requests can be safely merged.
+Running the tests with continuous integration services for pull requests is a common method used to ensure pull
+requests can be safely merged.
 A popular continuous integration provider for open source projects is [Travis CI](https://travis-ci.org).
 The build and test results for this package can be found in the table at the top of this page.
 
 Unit tests are not magic bullets.
 The inputs to the nodes must take on enough values to verify that functions return valid values.
 This will be different for each function and is not fully covered here.
-Another aspect of unit tests is to ensure that all lines of code are exercised by unit tests, also referred to as code coverage.
+Another aspect of unit tests is to ensure that all lines of code are exercised by unit tests, also referred to as
+code coverage.
 
 A popular code coverage provider for open source projects is [codecov](https://codecov.io).
 The code coverage results for this package can be found in the table at the top of this page.
-This tool provides some measure of confidence that the existing unit tests will catch any issues, and that new changes are introduced with unit test code.
+This tool provides some measure of confidence that the existing unit tests will catch any issues, and that new
+changes are introduced with unit test code.
 
 The configuration file for Travis is in this repository at [.travis.yml](.travis.yml).
 That file contains build flags to ensure that unit tests run and that code coverage results can be calculated.
 
 ## Deploying GitHub Pages
+
 Deployed using the command `mkdocs gh-deploy`.

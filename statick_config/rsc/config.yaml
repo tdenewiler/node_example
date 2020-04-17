@@ -11,9 +11,9 @@ levels:
         flags: "-W2 --ignore DESCRIPTION_BOILERPLATE,DESCRIPTION_MEANINGLESS,GLOBAL_VAR_COLLISION,LINK_DIRECTORY,LITERAL_PROJECT_NAME,TARGET_NAME_COLLISION"
       cccc:
         flags: ""
-      clang-format:
-        flags: ""
-        version: 3.9
+      # clang-format:
+      #   flags: ""
+      #   version: 6.0
       clang-tidy:
         flags: "-checks='cert*,clang-analyzer-alpha.cplusplus.virtualCall,clang-analyzer-alpha.security.ArrayBoundV2,clang-analyzer-core.UndefinedBinaryOperatorResult,clang-analyzer-cplusplus.NewDelete,clang-analyzer-cplusplus.NewDeleteLeaks,clang-analyzer-unix.MismatchedDeallocatorclang-analyzer-unix.Malloc,misc-new-delete-overheads,misc-non-copyable-objects,misc-static-assert,clang-diagnostic-dangling-initializer-list,clang-diagnostic-delete-incomplete,clang-diagnostic-delete-non-virtual-dtor,clang-diagnostic-dynamic-class-memaccess,clang-diagnostic-exceptions,clang-diagnostic-implicit-int,clang-diagnostic-incompatible-pointer-types,clang-diagnostic-incompatible-pointer-types-discards-qualifiers,clang-diagnostic-int-conversion,clang-diagnostic-int-to-pointer-castclang-diagnostic-invalid-noreturn,clang-diagnostic-invalid-offsetof,clang-diagnostic-mismatched-new-delete,clang-diagnostic-parentheses,clang-diagnostic-reorder,clang-diagnostic-reserved-id-macro,clang-diagnostic-return-type,clang-diagnostic-sometimes-uninitialized,clang-diagnostic-unevaluated-expression,clang-diagnostic-uninitialized,clang-diagnostic-unsequenced,clang-diagnostic-user-defined-literals,clang-diagnostic-varargs,clang-diagnostic-vexing-parse,clang-diagnostic-trigraphs,clang-diagnostic-unreachable-code,clang-diagnostic-format,clang-diagnostic-cast-align,clang-diagnostic-cast-qual,clang-diagnostic-format-security,clang-diagnostic-sequence-point,clang-diagnostic-char-subscripts,clang-diagnostic-unused-parameter,clang-diagnostic-unused-value,-boost-use-to-string,-cert-err58-cpp,-cert-err60-cpp,-clang-analyzer-deadcode.DeadStores,-clang-analyzer-alpha.deadcode.UnreachableCode,-clang-analyzer-optin.performance.Padding,-cppcoreguidelines-*,-google-default-arguments,-google-readability-namespace-comments,-google-runtime-int,-google-runtime-references,-llvm-include-order,-llvm-namespace-comment,-modernize-*,-misc-misplaced-widening-cast,-misc-unused-parameters,-readability-else-after-return'"
       cmakelint:
@@ -27,7 +27,7 @@ levels:
       lizard:
         flags: ""
       make:
-        flags: "-Wcast-align -Wchar-subscripts -Wformat-security -Wformat -Wimplicit-int -Wint-to-pointer-cast -Wparentheses -Winvalid-offsetof -Wsequence-point -Wdelete-non-virtual-dtor -Wreorder -Wreturn-type -Wuninitialized -Wunused-parameter -Wunreachable-code -Wunused-value -Wvarargs -Wtrigraphs -Wcast-qual -Wall -Wextra -Woverloaded-virtual -Wnon-virtual-dtor -Wold-style-cast -Wno-unused-variable -Wno-unused-but-set-variable -Wno-unused-parameter"
+        flags: "-Wcast-align -Wchar-subscripts -Wformat-security -Wformat -Wimplicit-int -Wint-to-pointer-cast -Wparentheses -Winvalid-offsetof -Wsequence-point -Wdelete-non-virtual-dtor -Wreorder -Wreturn-type -Wuninitialized -Wunused-parameter -Wunreachable-code -Wunused-value -Wvarargs -Wtrigraphs -Wcast-qual -Wall -Wextra -Woverloaded-virtual -Wnon-virtual-dtor -Wold-style-cast -Wno-unused-variable -Wno-unused-parameter"
       # Set max line length to match black.
       pycodestyle:
         flags: "--max-line-length=88"

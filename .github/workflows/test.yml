@@ -1,0 +1,121 @@
+---
+name: Build & Test
+
+on: [pull_request, push]  # NOLINT
+
+jobs:
+  build:
+
+    runs-on: ${{ matrix.os }}
+
+    container:
+      image: ros:melodic
+
+    strategy:
+      matrix:
+        os: [ubuntu-18.04]
+
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          path: src/node_example
+
+      - uses: actions/cache@v1
+        if: startsWith(runner.os, 'Linux')
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      # Remove apt repos that are known to break from time to time.
+      # See https://github.com/actions/virtual-environments/issues/323
+      - name: Remove broken apt repos [Ubuntu]
+        run: |
+          for apt_file in `grep -lr microsoft /etc/apt/sources.list.d/`; do sudo rm $apt_file; done
+
+      - name: Install ROS package dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y python-pip
+          sudo apt install -y python3-pip
+          sudo apt install -y python-catkin-tools
+          python -m pip install --upgrade pip
+          python3 -m pip install --upgrade pip
+
+      - name: Create workspace
+        run: |
+          cd src
+          wstool init
+          cd ..
+          rosdep update
+          rosdep install -y --from-paths src --ignore-src --rosdistro melodic
+          # Python 3 packages are needed later for statick.
+          ROS_PYTHON_VERSION=3 rosdep install -y --from-paths src --ignore-src --rosdistro melodic
+
+      - name: Install statick dependencies
+        run: |
+          sudo apt update
+          python3 -m pip install --upgrade black
+          python3 -m pip install --upgrade statick
+          python3 -m pip install --upgrade statick-md
+          sudo apt install -y cccc
+          sudo apt install -y clang
+          sudo apt install -y clang-6.0
+          sudo apt install -y clang-format
+          sudo apt install -y clang-format-6.0
+          sudo apt install -y clang-tidy
+          sudo apt install -y clang-tidy-6.0
+          sudo apt install -y cppcheck
+          sudo apt install -y flawfinder
+          sudo apt install -y libxml2
+          sudo apt install -y libxml2-utils
+          sudo apt install -y maven
+          sudo apt install -y python-catkin-lint
+          sudo apt install -y python-catkin-pkg
+          sudo apt install -y python-git
+          sudo apt install -y python-yapsy
+          sudo apt install -y ros-melodic-roslint
+          sudo apt install -y uncrustify
+
+      # Have to install newer version from non-apt source due to SSL library compatibility issues.
+      - name: Install node
+        run: |
+          sudo apt install -y curl
+          curl -sL https://deb.nodesource.com/setup_10.x -o nodesource_setup.sh
+          bash nodesource_setup.sh
+          sudo apt install -y nodejs
+          sudo npm install -g n
+          sudo n stable
+          sudo npm install -g markdownlint-cli@0.21.0
+
+      - name: Statick markdown
+        run: |
+          statick . --profile documentation.yaml
+
+      - name: Build and Statick
+        run: |
+          . /opt/ros/melodic/setup.bash
+          catkin build
+          . devel/setup.bash
+          mkdir statick-output
+          cp src/node_example/statick_config/rsc/_clang-format ~
+          statick src/node_example --output-directory statick-output --user-paths src/node_example/statick_config
+
+      - name: Unit tests
+        run: |
+          sudo apt install -y lcov
+          . /opt/ros/melodic/setup.bash
+          catkin clean -y
+          catkin config --cmake-args -DCMAKE_CXX_FLAGS="-Wall -Wno-unused --coverage -fno-inline -fno-inline-small-functions -fno-default-inline" -DCMAKE_C_FLAGS="-Wall -Wno-unused --coverage -fno-inline -fno-inline-small-functions -fno-default-inline" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXE_LINKER_FLAGS="-lgcov"
+          catkin build
+          catkin run_tests -i && catkin_test_results
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          fail_ci_if_error: true
