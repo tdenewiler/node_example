@@ -6,14 +6,19 @@ on: [pull_request, push]  # NOLINT
 jobs:
   build:
 
-    runs-on: ${{ matrix.os }}
-
-    container:
-      image: ros:melodic
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        os: [ubuntu-18.04]
+        container:
+          - image: 'ros:kinetic'
+            env:
+              ROS_DISTRO: kinetic
+          - image: 'ros:melodic'
+            env:
+              ROS_DISTRO: melodic
+
+    container: ${{ matrix.container }}
 
     defaults:
       run:
@@ -23,14 +28,6 @@ jobs:
       - uses: actions/checkout@v2
         with:
           path: src/node_example
-
-      - uses: actions/cache@v1
-        if: startsWith(runner.os, 'Linux')
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
 
       # Remove apt repos that are known to break from time to time.
       # See https://github.com/actions/virtual-environments/issues/323
@@ -53,9 +50,9 @@ jobs:
           wstool init
           cd ..
           rosdep update
-          rosdep install -y --from-paths src --ignore-src --rosdistro melodic
+          rosdep install -y --from-paths src --ignore-src --rosdistro $ROS_DISTRO
           # Python 3 packages are needed later for statick.
-          ROS_PYTHON_VERSION=3 rosdep install -y --from-paths src --ignore-src --rosdistro melodic
+          ROS_PYTHON_VERSION=3 rosdep install -y --from-paths src --ignore-src --rosdistro $ROS_DISTRO
 
       - name: Install statick dependencies
         run: |
@@ -79,7 +76,7 @@ jobs:
           sudo apt install -y python-catkin-pkg
           sudo apt install -y python-git
           sudo apt install -y python-yapsy
-          sudo apt install -y ros-melodic-roslint
+          sudo apt install -y ros-$ROS_DISTRO-roslint
           sudo apt install -y uncrustify
 
       # Have to install newer version from non-apt source due to SSL library compatibility issues.
@@ -99,7 +96,7 @@ jobs:
 
       - name: Build and Statick
         run: |
-          . /opt/ros/melodic/setup.bash
+          . /opt/ros/$ROS_DISTRO/setup.bash
           catkin build
           . devel/setup.bash
           mkdir statick-output
@@ -109,7 +106,7 @@ jobs:
       - name: Unit tests
         run: |
           sudo apt install -y lcov
-          . /opt/ros/melodic/setup.bash
+          . /opt/ros/$ROS_DISTRO/setup.bash
           catkin clean -y
           catkin config --cmake-args -DCMAKE_CXX_FLAGS="-Wall -Wno-unused --coverage -fno-inline -fno-inline-small-functions -fno-default-inline" -DCMAKE_C_FLAGS="-Wall -Wno-unused --coverage -fno-inline -fno-inline-small-functions -fno-default-inline" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXE_LINKER_FLAGS="-lgcov"
           catkin build
