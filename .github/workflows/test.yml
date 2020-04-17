@@ -79,7 +79,7 @@ jobs:
           sudo apt install -y uncrustify
 
       - name: Install black (Python 3.6+)
-        if: startsWith($ROS_DISTRO, 'melodic')
+        if: endsWith(matrix.container, 'melodic')
         run: |
           python3 -m pip install --upgrade black
 
@@ -99,7 +99,7 @@ jobs:
           statick . --profile documentation.yaml
 
       - name: Build and Statick
-        if: startsWith($ROS_DISTRO, 'melodic')
+        if: endsWith(matrix.container, 'melodic')
         run: |
           . /opt/ros/$ROS_DISTRO/setup.bash
           catkin build
