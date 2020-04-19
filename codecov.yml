@@ -2,3 +2,7 @@
 ignore:
   - "build"
   - "devel"
+  - "test"
+
+fixes:
+  - "src/node_example/::"
