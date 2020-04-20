@@ -46,7 +46,6 @@ jobs:
 
       - name: Create workspace
         run: |
-          cp src/node_example/codecov.yml .
           cd src
           wstool init
           cd ..
@@ -116,6 +115,10 @@ jobs:
           catkin config --cmake-args -DCMAKE_CXX_FLAGS="-Wall -Wno-unused --coverage -fno-inline -fno-inline-small-functions -fno-default-inline" -DCMAKE_C_FLAGS="-Wall -Wno-unused --coverage -fno-inline -fno-inline-small-functions -fno-default-inline" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXE_LINKER_FLAGS="-lgcov"
           catkin build
           catkin run_tests -i && catkin_test_results
+
+      - name: Configure Codecov
+        run: |
+          cp src/node_example/codecov.yml .
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
