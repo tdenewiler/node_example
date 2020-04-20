@@ -46,6 +46,7 @@ jobs:
 
       - name: Create workspace
         run: |
+          cp src/node_example/codecov.yml .
           cd src
           wstool init
           cd ..
