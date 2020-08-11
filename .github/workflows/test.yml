@@ -13,11 +13,11 @@ jobs:
         container:
           - image: 'ros:kinetic'
             env:
-              PYTHON_VERSION: 2
+              PYTHON_VERSION:
               ROS_DISTRO: kinetic
           - image: 'ros:melodic'
             env:
-              PYTHON_VERSION: 2
+              PYTHON_VERSION:
               ROS_DISTRO: melodic
           - image: 'ros:noetic'
             env:
@@ -45,8 +45,9 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y python$PYTHON_VERSION-pip
-          sudo apt install -y python-catkin-tools
+          #sudo apt install -y python-catkin-tools
           python$PYTHON_VERSION -m pip install --upgrade pip
+          python$PYTHON_VERSION -m pip install git+https://github.com/catkin/catkin_tools.git
 
       - name: Create workspace
         run: |
