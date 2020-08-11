@@ -87,8 +87,8 @@ jobs:
           sudo apt install -y maven
           sudo apt install -y python$PYTHON_VERSION-catkin-lint
           sudo apt install -y python$PYTHON_VERSION-catkin-pkg
-          sudo apt install -y python-git
-          sudo apt install -y python-yapsy
+          sudo apt install -y python$PYTHON_VERSION-git
+          sudo apt install -y python$PYTHON_VERSION-yapsy
           sudo apt install -y ros-$ROS_DISTRO-roslint
           sudo apt install -y uncrustify
 
