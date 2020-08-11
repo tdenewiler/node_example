@@ -81,6 +81,7 @@ jobs:
           sudo apt install -y clang-tidy
           sudo apt install -y clang-tidy-6.0
           sudo apt install -y cppcheck
+          sudo apt install -y file
           sudo apt install -y flawfinder
           sudo apt install -y libxml2
           sudo apt install -y libxml2-utils
