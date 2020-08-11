@@ -13,12 +13,15 @@ jobs:
         container:
           - image: 'ros:kinetic'
             env:
+              PYTHON_VERSION: 2
               ROS_DISTRO: kinetic
           - image: 'ros:melodic'
             env:
+              PYTHON_VERSION: 2
               ROS_DISTRO: melodic
           - image: 'ros:noetic'
             env:
+              PYTHON_VERSION: 3
               ROS_DISTRO: noetic
 
     container: ${{ matrix.container }}
@@ -41,11 +44,9 @@ jobs:
       - name: Install ROS package dependencies
         run: |
           sudo apt update
-          sudo apt install -y python-pip
-          sudo apt install -y python3-pip
+          sudo apt install -y python$PYTHON_VERSION-pip
           sudo apt install -y python-catkin-tools
-          python -m pip install --upgrade pip
-          python3 -m pip install --upgrade pip
+          python$PYTHON_VERSION -m pip install --upgrade pip
 
       - name: Create workspace
         run: |
