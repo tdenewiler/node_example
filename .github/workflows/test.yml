@@ -42,11 +42,19 @@ jobs:
           for apt_file in `grep -lr microsoft /etc/apt/sources.list.d/`; do sudo rm $apt_file; done
 
       - name: Install ROS package dependencies
+        if: contains(matrix.container.image, 'kinetic') || contains(matrix.container.image, 'melodic')
         run: |
           sudo apt update
-          sudo apt install -y git python$PYTHON_VERSION-pip
-          #sudo apt install -y python-catkin-tools
-          python$PYTHON_VERSION -m pip install --upgrade pip
+          sudo apt install -y git python-pip
+          sudo apt install -y python-catkin-tools
+          python -m pip install --upgrade pip
+
+      - name: Install ROS package dependencies
+        if: contains(matrix.container.image, 'noetic')
+        run: |
+          sudo apt update
+          sudo apt install -y git python3-pip
+          python3 -m pip install --upgrade pip
           python$PYTHON_VERSION -m pip install git+https://github.com/catkin/catkin_tools.git
 
       - name: Create workspace
