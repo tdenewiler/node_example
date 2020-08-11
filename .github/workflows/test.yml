@@ -17,6 +17,9 @@ jobs:
           - image: 'ros:melodic'
             env:
               ROS_DISTRO: melodic
+          - image: 'ros:noetic'
+            env:
+              ROS_DISTRO: noetic
 
     container: ${{ matrix.container }}
 
@@ -51,7 +54,7 @@ jobs:
           cd ..
           rosdep update
           rosdep install -y --from-paths src --ignore-src --rosdistro $ROS_DISTRO
-          # Python 3 packages are needed later for statick.
+          # Python 3 packages are needed later for Statick.
           ROS_PYTHON_VERSION=3 rosdep install -y --from-paths src --ignore-src --rosdistro $ROS_DISTRO
 
       - name: Install Statick dependencies
@@ -79,7 +82,7 @@ jobs:
           sudo apt install -y uncrustify
 
       - name: Install black (Python 3.6+)
-        if: contains(matrix.container.image, 'melodic')
+        if: contains(matrix.container.image, 'melodic') || contains(matrix.container.image, 'noetic')
         run: |
           python3 -m pip install --upgrade black
 
@@ -99,7 +102,7 @@ jobs:
           statick . --check --profile documentation.yaml
 
       - name: Build and Statick
-        if: contains(matrix.container.image, 'melodic')
+        if: contains(matrix.container.image, 'melodic') || contains(matrix.container.image, 'noetic')
         run: |
           . /opt/ros/$ROS_DISTRO/setup.bash
           catkin build
