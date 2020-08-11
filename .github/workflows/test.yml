@@ -44,7 +44,7 @@ jobs:
       - name: Install ROS package dependencies
         run: |
           sudo apt update
-          sudo apt install -y python$PYTHON_VERSION-pip
+          sudo apt install -y git python$PYTHON_VERSION-pip
           #sudo apt install -y python-catkin-tools
           python$PYTHON_VERSION -m pip install --upgrade pip
           python$PYTHON_VERSION -m pip install git+https://github.com/catkin/catkin_tools.git
