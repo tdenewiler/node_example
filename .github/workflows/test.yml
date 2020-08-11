@@ -46,6 +46,7 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y git python-pip
+          sudo apt install -y git python3-pip
           sudo apt install -y python-catkin-tools
           python -m pip install --upgrade pip
 
