@@ -1,8 +1,8 @@
 # ROS Node Example
 
 ![Build & Test](https://github.com/tdenewiler/node_example/workflows/Build%20&%20Test/badge.svg)
-[![codecov](https://codecov.io/gh/tdenewiler/node_example/branch/master/graph/badge.svg)](https://codecov.io/gh/tdenewiler/node_example)
-[![BCH compliance](https://bettercodehub.com/edge/badge/tdenewiler/node_example?branch=master)](https://bettercodehub.com/)
+[![codecov](https://codecov.io/gh/tdenewiler/node_example/branch/main/graph/badge.svg)](https://codecov.io/gh/tdenewiler/node_example)
+[![BCH compliance](https://bettercodehub.com/edge/badge/tdenewiler/node_example?branch=main)](https://bettercodehub.com/)
 
 [ROS](http://ros.org) allows for creating nodes that communicate with each other.
 It is very common to use C++ and Python to write these nodes.
@@ -60,7 +60,7 @@ only running certain nodes when some conditions are met, etc.).
 
 ## Branches
 
-The `master` branch will keep up with the supported ROS1 distributions.
+The `main` branch will keep up with the supported ROS1 distributions.
 These currently include Kinetic (16.04), Melodic (18.04), and Noetic (20.04).
 Tests are run using GitHub Actions for all of these distributions.
 
@@ -79,7 +79,7 @@ There are several methods of running the unit tests.
 Running the tests with continuous integration services for pull requests is a common method used to ensure pull
 requests can be safely merged.
 One popular continuous integration provider for open source projects is [Travis CI](https://travis-ci.org).
-This project now uses GitHub Actions to perform tests prior to merging changes into the master branch.
+This project now uses GitHub Actions to perform tests prior to merging changes into the `main` branch.
 The build and test results for this package can be found in the table at the top of this page.
 
 Unit tests are not magic bullets.
