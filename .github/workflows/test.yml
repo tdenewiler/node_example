@@ -13,10 +13,16 @@ jobs:
         container:
           - image: 'ros:kinetic'
             env:
+              PYTHON_VERSION:
               ROS_DISTRO: kinetic
           - image: 'ros:melodic'
             env:
+              PYTHON_VERSION:
               ROS_DISTRO: melodic
+          - image: 'ros:noetic'
+            env:
+              PYTHON_VERSION: 3
+              ROS_DISTRO: noetic
 
     container: ${{ matrix.container }}
 
@@ -36,13 +42,21 @@ jobs:
           for apt_file in `grep -lr microsoft /etc/apt/sources.list.d/`; do sudo rm $apt_file; done
 
       - name: Install ROS package dependencies
+        if: contains(matrix.container.image, 'kinetic') || contains(matrix.container.image, 'melodic')
         run: |
           sudo apt update
-          sudo apt install -y python-pip
-          sudo apt install -y python3-pip
+          sudo apt install -y git python-pip
+          sudo apt install -y git python3-pip
           sudo apt install -y python-catkin-tools
           python -m pip install --upgrade pip
+
+      - name: Install ROS package dependencies
+        if: contains(matrix.container.image, 'noetic')
+        run: |
+          sudo apt update
+          sudo apt install -y git python3-pip
           python3 -m pip install --upgrade pip
+          python$PYTHON_VERSION -m pip install git+https://github.com/catkin/catkin_tools.git
 
       - name: Create workspace
         run: |
@@ -51,7 +65,7 @@ jobs:
           cd ..
           rosdep update
           rosdep install -y --from-paths src --ignore-src --rosdistro $ROS_DISTRO
-          # Python 3 packages are needed later for statick.
+          # Python 3 packages are needed later for Statick.
           ROS_PYTHON_VERSION=3 rosdep install -y --from-paths src --ignore-src --rosdistro $ROS_DISTRO
 
       - name: Install Statick dependencies
@@ -67,19 +81,20 @@ jobs:
           sudo apt install -y clang-tidy
           sudo apt install -y clang-tidy-6.0
           sudo apt install -y cppcheck
+          sudo apt install -y file
           sudo apt install -y flawfinder
           sudo apt install -y libxml2
           sudo apt install -y libxml2-utils
           sudo apt install -y maven
-          sudo apt install -y python-catkin-lint
-          sudo apt install -y python-catkin-pkg
-          sudo apt install -y python-git
-          sudo apt install -y python-yapsy
+          sudo apt install -y python$PYTHON_VERSION-catkin-lint
+          sudo apt install -y python$PYTHON_VERSION-catkin-pkg
+          sudo apt install -y python$PYTHON_VERSION-git
+          sudo apt install -y python$PYTHON_VERSION-yapsy
           sudo apt install -y ros-$ROS_DISTRO-roslint
           sudo apt install -y uncrustify
 
       - name: Install black (Python 3.6+)
-        if: contains(matrix.container.image, 'melodic')
+        if: contains(matrix.container.image, 'melodic') || contains(matrix.container.image, 'noetic')
         run: |
           python3 -m pip install --upgrade black
 
@@ -99,7 +114,7 @@ jobs:
           statick . --check --profile documentation.yaml
 
       - name: Build and Statick
-        if: contains(matrix.container.image, 'melodic')
+        if: contains(matrix.container.image, 'melodic') || contains(matrix.container.image, 'noetic')
         run: |
           . /opt/ros/$ROS_DISTRO/setup.bash
           catkin build
