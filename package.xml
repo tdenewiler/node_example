@@ -21,5 +21,8 @@
   <depend>rospy</depend>
   <depend>std_msgs</depend>
 
+  <exec_depend>rqt_console</exec_depend>
+  <exec_depend>rqt_reconfigure</exec_depend>
+
   <test_depend>rostest</test_depend>
 </package>
