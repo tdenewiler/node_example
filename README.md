@@ -60,9 +60,9 @@ only running certain nodes when some conditions are met, etc.).
 
 ## Branches
 
-The `master` branch will try to keep up with the latest long-term support release version of ROS (currently Kinetic).
-The `hydro-dev` branch was tested on ROS Hydro, Indigo, and Kinetic.
-The `fuerte-dev` branch was tested on ROS Fuerte.
+The `master` branch will keep up with the supported ROS1 distributions.
+These currently include Kinetic (16.04), Melodic (18.04), and Noetic (20.04).
+Tests are run using GitHub Actions for all of these distributions.
 
 ## Testing
 
@@ -78,7 +78,8 @@ Callbacks are used to verify that the expected data is available on the specifie
 There are several methods of running the unit tests.
 Running the tests with continuous integration services for pull requests is a common method used to ensure pull
 requests can be safely merged.
-A popular continuous integration provider for open source projects is [Travis CI](https://travis-ci.org).
+One popular continuous integration provider for open source projects is [Travis CI](https://travis-ci.org).
+This project now uses GitHub Actions to perform tests prior to merging changes into the master branch.
 The build and test results for this package can be found in the table at the top of this page.
 
 Unit tests are not magic bullets.
@@ -91,9 +92,6 @@ A popular code coverage provider for open source projects is [codecov](https://c
 The code coverage results for this package can be found in the table at the top of this page.
 This tool provides some measure of confidence that the existing unit tests will catch any issues, and that new
 changes are introduced with unit test code.
-
-The configuration file for Travis is in this repository at [.travis.yml](.travis.yml).
-That file contains build flags to ensure that unit tests run and that code coverage results can be calculated.
 
 ## Deploying GitHub Pages
 
