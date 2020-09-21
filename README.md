@@ -2,7 +2,6 @@
 
 ![Build & Test](https://github.com/tdenewiler/node_example/workflows/Build%20&%20Test/badge.svg)
 [![codecov](https://codecov.io/gh/tdenewiler/node_example/branch/main/graph/badge.svg)](https://codecov.io/gh/tdenewiler/node_example)
-[![BCH compliance](https://bettercodehub.com/edge/badge/tdenewiler/node_example?branch=main)](https://bettercodehub.com/)
 
 [ROS](http://ros.org) allows for creating nodes that communicate with each other.
 It is very common to use C++ and Python to write these nodes.
