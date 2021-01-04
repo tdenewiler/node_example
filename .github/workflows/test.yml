@@ -42,21 +42,15 @@ jobs:
           for apt_file in `grep -lr microsoft /etc/apt/sources.list.d/`; do sudo rm $apt_file; done
 
       - name: Install ROS package dependencies
-        if: contains(matrix.container.image, 'kinetic') || contains(matrix.container.image, 'melodic')
         run: |
           sudo apt update
-          sudo apt install -y git python-pip
-          sudo apt install -y git python3-pip
-          sudo apt install -y python-catkin-tools
-          python -m pip install --upgrade pip
-
-      - name: Install ROS package dependencies
-        if: contains(matrix.container.image, 'noetic')
-        run: |
-          sudo apt update
-          sudo apt install -y git python3-pip
+          sudo apt install -y git
+          sudo apt install -y python$PYTHON_VERSION-pip
+          sudo apt install -y python3-pip
+          sudo apt install -y python$PYTHON_VERSION-osrf-pycommon
+          sudo apt install -y python$PYTHON_VERSION-catkin-tools
+          python$PYTHON_VERSION -m pip install --upgrade pip
           python3 -m pip install --upgrade pip
-          python$PYTHON_VERSION -m pip install git+https://github.com/catkin/catkin_tools.git
 
       - name: Create workspace
         run: |
@@ -113,11 +107,15 @@ jobs:
         run: |
           statick . --check --profile documentation.yaml
 
-      - name: Build and Statick
+      - name: Build workspace
         if: contains(matrix.container.image, 'melodic') || contains(matrix.container.image, 'noetic')
         run: |
           . /opt/ros/$ROS_DISTRO/setup.bash
           catkin build
+
+      - name: Statick
+        if: contains(matrix.container.image, 'melodic') || contains(matrix.container.image, 'noetic')
+        run: |
           . devel/setup.bash
           mkdir statick-output
           cp src/node_example/statick_config/rsc/_clang-format ~
