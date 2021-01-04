@@ -120,7 +120,7 @@ jobs:
           catkin build
           . devel/setup.bash
           mkdir statick-output
-          cp src/node_example/statick_config/rsc/_clang-format ~
+          cp src/node_example/statick_config/rsc/.clang-format ~
           statick src/node_example --output-directory statick-output --check --user-paths src/node_example/statick_config
 
       - name: Unit tests
