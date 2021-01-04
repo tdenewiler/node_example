@@ -118,8 +118,7 @@ jobs:
         run: |
           . devel/setup.bash
           mkdir statick-output
-          echo "HOME: " $HOME
-          cp src/node_example/statick_config/rsc/.clang-format $HOME
+          sudo cp src/node_example/statick_config/rsc/.clang-format /
           statick src/node_example --output-directory statick-output --check --user-paths src/node_example/statick_config
 
       - name: Unit tests
