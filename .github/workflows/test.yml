@@ -11,10 +11,6 @@ jobs:
     strategy:
       matrix:
         container:
-          - image: 'ros:kinetic'
-            env:
-              PYTHON_VERSION:
-              ROS_DISTRO: kinetic
           - image: 'ros:melodic'
             env:
               PYTHON_VERSION:
