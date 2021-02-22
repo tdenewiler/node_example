@@ -49,7 +49,7 @@ jobs:
           sudo apt install -y python3-pip
           sudo apt install -y python$PYTHON_VERSION-osrf-pycommon
           sudo apt install -y python$PYTHON_VERSION-catkin-tools
-          python$PYTHON_VERSION -m pip install --upgrade pip
+          python$PYTHON_VERSION -m pip install --upgrade "pip < 21.0"  # Version constraint only for Ubuntu 16.04.
           python3 -m pip install --upgrade pip
 
       - name: Create workspace
