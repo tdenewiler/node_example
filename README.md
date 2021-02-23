@@ -60,7 +60,7 @@ only running certain nodes when some conditions are met, etc.).
 ## Branches
 
 The `main` branch will keep up with the supported ROS1 distributions.
-These currently include Kinetic (16.04), Melodic (18.04), and Noetic (20.04).
+These currently include Melodic (18.04) and Noetic (20.04).
 Tests are run using GitHub Actions for all of these distributions.
 
 ## Testing
