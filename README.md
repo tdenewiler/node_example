@@ -28,7 +28,7 @@ Additional documentation at
 
 There are several launch files included, the main one being `node_example.launch`.
 This will start a talker and listener written in C++ and a talker and listener written in Python.
-One GUI will open allowing you to see what messages are being recieved by the listeners and another GUI will allow
+One GUI will open allowing you to see what messages are being received by the listeners and another GUI will allow
 you to change the values sent from each talker.
 Both listener nodes receive messages from both talkers, showing that the languages used to write the talkers and
 listeners can be mixed.
