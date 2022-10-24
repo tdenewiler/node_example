@@ -106,7 +106,7 @@ jobs:
 
       - name: Statick markdown
         run: |
-          statick . --check --profile documentation.yaml --log info
+          statick . --check --profile documentation.yaml --log info --timings
 
       - name: Build workspace
         if: contains(matrix.container.image, 'melodic') || contains(matrix.container.image, 'noetic')
@@ -120,7 +120,7 @@ jobs:
           . devel/setup.bash
           mkdir statick-output
           cp src/node_example/statick_config/rsc/_clang-format ~
-          statick src/node_example --output-directory statick-output --check --user-paths src/node_example/statick_config --log info
+          statick src/node_example --output-directory statick-output --check --user-paths src/node_example/statick_config --log info --timings
 
       - name: Unit tests
         run: |
