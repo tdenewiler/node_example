@@ -32,15 +32,13 @@ jobs:
         shell: bash
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           path: src/node_example
 
-      # Remove apt repos that are known to break from time to time.
-      # See https://github.com/actions/virtual-environments/issues/323
-      - name: Remove broken apt repos [Ubuntu]
-        run: |
-          for apt_file in `grep -lr microsoft /etc/apt/sources.list.d/`; do sudo rm $apt_file; done
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
 
       - name: Install ROS package dependencies
         run: |
@@ -93,20 +91,13 @@ jobs:
         run: |
           python3 -m pip install --upgrade black
 
-      # Have to install newer version from non-apt source due to SSL library compatibility issues.
-      - name: Install node
+      - name: Install node packages
         run: |
-          sudo apt install -y curl
-          curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh
-          bash nodesource_setup.sh
-          sudo apt install -y nodejs
-          sudo npm install -g n
-          sudo n stable
-          sudo npm install -g markdownlint-cli@0.21.0
+          npm install -g markdownlint-cli@0.21.0
 
       - name: Statick markdown
         run: |
-          statick . --check --profile documentation.yaml --log info
+          statick . --check --profile documentation.yaml --log info --timings
 
       - name: Build workspace
         if: contains(matrix.container.image, 'melodic') || contains(matrix.container.image, 'noetic')
@@ -118,9 +109,8 @@ jobs:
         if: contains(matrix.container.image, 'melodic') || contains(matrix.container.image, 'noetic')
         run: |
           . devel/setup.bash
-          mkdir statick-output
           cp src/node_example/statick_config/rsc/_clang-format ~
-          statick src/node_example --output-directory statick-output --check --user-paths src/node_example/statick_config --log info
+          statick src/node_example --check --user-paths src/node_example/statick_config --log info --timings
 
       - name: Unit tests
         run: |
@@ -135,6 +125,6 @@ jobs:
           cp src/node_example/codecov.yml .
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v3
         with:
           fail_ci_if_error: true
