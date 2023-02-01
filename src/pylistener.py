@@ -6,7 +6,7 @@
 import rospy
 
 # Import custom message data.
-from node_example.msg import NodeExampleData
+from node_example.msg import NodeExampleData  # pylint: disable=no-name-in-module
 
 
 def callback(data):

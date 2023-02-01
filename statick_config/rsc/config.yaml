@@ -8,7 +8,15 @@ levels:
       black:
         flags: ""
       catkin_lint:
-        flags: "-W2 --ignore DESCRIPTION_BOILERPLATE,DESCRIPTION_MEANINGLESS,GLOBAL_VAR_COLLISION,LINK_DIRECTORY,LITERAL_PROJECT_NAME,TARGET_NAME_COLLISION"
+        flags: >
+          "-W2
+          --ignore
+          DESCRIPTION_BOILERPLATE,
+          DESCRIPTION_MEANINGLESS,
+          GLOBAL_VAR_COLLISION,
+          LINK_DIRECTORY,
+          LITERAL_PROJECT_NAME,
+          TARGET_NAME_COLLISION"
       # Disable CCCC due to an unhandled exception that occurs in GitHub Actions but not locally.
       # cccc:
       #   flags: ""
@@ -16,13 +24,95 @@ levels:
       #   flags: ""
       #   version: 6.0
       clang-tidy:
-        flags: "-checks='cert*,clang-analyzer-alpha.cplusplus.virtualCall,clang-analyzer-alpha.security.ArrayBoundV2,clang-analyzer-core.UndefinedBinaryOperatorResult,clang-analyzer-cplusplus.NewDelete,clang-analyzer-cplusplus.NewDeleteLeaks,clang-analyzer-unix.MismatchedDeallocatorclang-analyzer-unix.Malloc,misc-new-delete-overheads,misc-non-copyable-objects,misc-static-assert,clang-diagnostic-dangling-initializer-list,clang-diagnostic-delete-incomplete,clang-diagnostic-delete-non-virtual-dtor,clang-diagnostic-dynamic-class-memaccess,clang-diagnostic-exceptions,clang-diagnostic-implicit-int,clang-diagnostic-incompatible-pointer-types,clang-diagnostic-incompatible-pointer-types-discards-qualifiers,clang-diagnostic-int-conversion,clang-diagnostic-int-to-pointer-castclang-diagnostic-invalid-noreturn,clang-diagnostic-invalid-offsetof,clang-diagnostic-mismatched-new-delete,clang-diagnostic-parentheses,clang-diagnostic-reorder,clang-diagnostic-reserved-id-macro,clang-diagnostic-return-type,clang-diagnostic-sometimes-uninitialized,clang-diagnostic-unevaluated-expression,clang-diagnostic-uninitialized,clang-diagnostic-unsequenced,clang-diagnostic-user-defined-literals,clang-diagnostic-varargs,clang-diagnostic-vexing-parse,clang-diagnostic-trigraphs,clang-diagnostic-unreachable-code,clang-diagnostic-format,clang-diagnostic-cast-align,clang-diagnostic-cast-qual,clang-diagnostic-format-security,clang-diagnostic-sequence-point,clang-diagnostic-char-subscripts,clang-diagnostic-unused-parameter,clang-diagnostic-unused-value,-boost-use-to-string,-cert-err58-cpp,-cert-err60-cpp,-clang-analyzer-deadcode.DeadStores,-clang-analyzer-alpha.deadcode.UnreachableCode,-clang-analyzer-optin.performance.Padding,-cppcoreguidelines-*,-google-default-arguments,-google-readability-namespace-comments,-google-runtime-int,-google-runtime-references,-llvm-include-order,-llvm-namespace-comment,-modernize-*,-misc-misplaced-widening-cast,-misc-unused-parameters,-readability-else-after-return'"
+        flags: >
+          "-checks='
+          cert*,
+          clang-analyzer-alpha.cplusplus.virtualCall,
+          clang-analyzer-alpha.security.ArrayBoundV2,
+          clang-analyzer-core.UndefinedBinaryOperatorResult,
+          clang-analyzer-cplusplus.NewDelete,
+          clang-analyzer-cplusplus.NewDeleteLeaks,
+          clang-analyzer-unix.MismatchedDeallocatorclang-analyzer-unix.Malloc,
+          misc-new-delete-overheads,
+          misc-non-copyable-objects,
+          misc-static-assert,
+          clang-diagnostic-dangling-initializer-list,
+          clang-diagnostic-delete-incomplete,
+          clang-diagnostic-delete-non-virtual-dtor,
+          clang-diagnostic-dynamic-class-memaccess,
+          clang-diagnostic-exceptions,
+          clang-diagnostic-implicit-int,
+          clang-diagnostic-incompatible-pointer-types,
+          clang-diagnostic-incompatible-pointer-types-discards-qualifiers,
+          clang-diagnostic-int-conversion,
+          clang-diagnostic-int-to-pointer-castclang-diagnostic-invalid-noreturn,
+          clang-diagnostic-invalid-offsetof,
+          clang-diagnostic-mismatched-new-delete,
+          clang-diagnostic-parentheses,c
+          lang-diagnostic-reorder,
+          clang-diagnostic-reserved-id-macro,
+          clang-diagnostic-return-type,
+          clang-diagnostic-sometimes-uninitialized,
+          clang-diagnostic-unevaluated-expression,
+          clang-diagnostic-uninitialized,
+          clang-diagnostic-unsequenced,
+          clang-diagnostic-user-defined-literals,
+          clang-diagnostic-varargs,
+          clang-diagnostic-vexing-parse,
+          clang-diagnostic-trigraphs,
+          clang-diagnostic-unreachable-code,
+          clang-diagnostic-format,
+          clang-diagnostic-cast-align,
+          clang-diagnostic-cast-qual,
+          clang-diagnostic-format-security,
+          clang-diagnostic-sequence-point,
+          clang-diagnostic-char-subscripts,
+          clang-diagnostic-unused-parameter,
+          clang-diagnostic-unused-value,
+          -boost-use-to-string,
+          -cert-err58-cpp,
+          -cert-err60-cpp,
+          -clang-analyzer-deadcode.DeadStores,
+          -clang-analyzer-alpha.deadcode.UnreachableCode,
+          -clang-analyzer-optin.performance.Padding,
+          -cppcoreguidelines-*,
+          -google-default-arguments,
+          -google-readability-namespace-comments,
+          -google-runtime-int,
+          -google-runtime-references,
+          -llvm-include-order,
+          -llvm-namespace-comment,
+          -modernize-*,
+          -misc-misplaced-widening-cast,
+          -misc-unused-parameters,
+          -readability-else-after-return
+          '"
       cmakelint:
         flags: "--spaces=2 --filter=-linelength,-whitespace/indent"
       cppcheck:
         flags: "-j 4 --enable=warning --template='[{file}:{line}]: ({severity} {id}) {message}'"
       cpplint:
-        flags: "--filter=-build/header_guard,-build/include,-build/include_order,-build/c++11,-readability/function,-readability/streams,-readability/todo,-readability/namespace,-readability/multiline_comment,-readability/fn_size,-readability/alt_tokens,-readability/braces,-readability/inheritance,-runtime/indentation_namespace,-runtime/int,-runtime/threadsafe_fn,-runtime/references,-runtime/array,-whitespace,-legal"
+        flags: >
+          "--filter=-build/header_guard,
+          -build/include,
+          -build/include_order,
+          -build/c++11,
+          -readability/function,
+          -readability/streams,
+          -readability/todo,
+          -readability/namespace,
+          -readability/multiline_comment,
+          -readability/fn_size,
+          -readability/alt_tokens,
+          -readability/braces,
+          -readability/inheritance,
+          -runtime/indentation_namespace,
+          -runtime/int,
+          -runtime/threadsafe_fn,
+          -runtime/references,
+          -runtime/array,
+          -whitespace,
+          -legal"
       flawfinder:
         flags: ""
       lizard:
@@ -41,9 +131,6 @@ levels:
       spotbugs:
         flags: ""
         include: "spotbugs-security.xml"
-      # Not using uncrustify since it is duplicated and not totally compatible with clang-format.
-      # uncrustify:
-      #   flags: ""
       xmllint:
         flags: ""
       yamllint:
