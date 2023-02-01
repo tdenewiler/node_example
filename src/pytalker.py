@@ -9,7 +9,7 @@ import rospy
 from dynamic_reconfigure.server import Server as DynamicReconfigureServer
 
 # Import custom message data and dynamic reconfigure variables.
-from node_example.msg import NodeExampleData
+from node_example.msg import NodeExampleData  # pylint: disable=no-name-in-module
 from node_example.cfg import nodeExampleConfig as ConfigType
 
 
