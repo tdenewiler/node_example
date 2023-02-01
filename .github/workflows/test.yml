@@ -111,6 +111,7 @@ jobs:
           catkin build
           . devel/setup.bash
           ls devel/lib/python2.7/dist-packages/node_example/msg/
+          cat devel/lib/python2.7/dist-packages/node_example/msg/_NodeExampleData.py
           cp src/node_example/statick_config/rsc/_clang-format ~
           statick src/node_example --check --user-paths src/node_example/statick_config --log info --timings
 
