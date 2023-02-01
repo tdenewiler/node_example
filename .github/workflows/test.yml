@@ -110,6 +110,12 @@ jobs:
         run: |
           catkin build
           . devel/setup.bash
+          ls
+          ls devel
+          ls devel/lib
+          ls devel/lib/python3
+          ls devel/lib/python3/dist-packages
+          ls devel/lib/python3/dist-packages/node_example
           ls devel/lib/python3/dist-packages/node_example/msg/
           cp src/node_example/statick_config/rsc/_clang-format ~
           statick src/node_example --check --user-paths src/node_example/statick_config --log info --timings
