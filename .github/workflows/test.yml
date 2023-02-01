@@ -120,11 +120,7 @@ jobs:
           catkin build
           catkin run_tests -i && catkin_test_results
 
-      - name: Configure Codecov
-        run: |
-          cp src/node_example/codecov.yml .
-
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
-          fail_ci_if_error: true
+          fail_ci_if_error: false
