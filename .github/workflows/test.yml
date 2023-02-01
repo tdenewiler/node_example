@@ -108,6 +108,7 @@ jobs:
       - name: Statick
         if: contains(matrix.container.image, 'melodic') || contains(matrix.container.image, 'noetic')
         run: |
+          catkin build
           . devel/setup.bash
           ls devel/lib/python3/dist-packages/node_example/msg/
           cp src/node_example/statick_config/rsc/_clang-format ~
